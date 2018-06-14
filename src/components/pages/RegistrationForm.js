@@ -302,7 +302,7 @@ class RegistrationForm extends Component {
           <br />
           <form onSubmit={this.handleSubmit}>
 
-            <h3 style={{color: "#a3c95c"}}>Contact Information</h3>
+            <h3 style={{color: "#c2b49a"}}>Contact Information</h3>
 
             <label>First Name </label>{requiredField}
             <input className="form-control form-text required" type="text" name="firstName" size="60" maxLength="128" onChange={this.handleChange.bind(this)} value={this.state.firstName} />
@@ -315,15 +315,10 @@ class RegistrationForm extends Component {
 
             <label>Date of Birth -- Calendar picker to be addeed </label>{requiredField}<br/><br/>
 
-            <label>Age </label>{requiredField} (Any need for this when there is already DOB requested??)<br />
-            <select name="age" value={this.state.age} onChange={this.handleChange.bind(this)}>
-            <option value="">----</option>
-              <option value="under18">Under 18</option>
-              <option value="18to24">18-24</option>
-              <option value="25-40  ">25-40</option>
-              <option value="40-60">40-60</option>
-              <option value="over60">60+</option>
-            </select><br/><br />
+            <label>Age </label>{requiredField} (Seemingly redundant since DOB is already requested)<br />
+
+            <label>Address </label>{requiredField}
+            <input className="form-control form-text required" type="text" name="address" size="60" maxLength="128" onChange={this.handleChange.bind(this)} value={this.state.address} />
 
             <label>Email </label>{requiredField}
             <input className="form-control form-text required" type="text" name="email" size="60" maxLength="128" onChange={this.handleChange.bind(this)} value={this.state.email} />
@@ -331,29 +326,7 @@ class RegistrationForm extends Component {
             <label>Contact Number </label>{requiredField}
             <input className="form-control form-text required" type="text" name="phone" size="60" maxLength="128" onChange={this.handleChange.bind(this)} value={this.state.phone} />
 
-            <label>Address </label>{requiredField}
-            <input className="form-control form-text required" type="text" name="address" size="60" maxLength="128" onChange={this.handleChange.bind(this)} value={this.state.address} />
-
-            <label>Suburb </label>{requiredField}
-            <input className="form-control form-text required" type="text" name="suburb" size="60" maxLength="128" onChange={this.handleChange.bind(this)} value={this.state.suburb} />
-
-            {/*
-            <label>State</label>{requiredField}<br/>
-            <select name="state" value={this.state.state} onChange={this.handleChange.bind(this)}>
-            <option value="">----</option>
-              <option value="act">Australian Capital Territory</option>
-              <option value="nsw">New South Wales</option>
-              <option value="nt">Northern Territory</option>
-              <option value="qld">Queensland</option>
-              <option value="sa">South Australia</option>
-              <option value="tas">Tasmania</option>
-              <option value="wa">Western Australia</option>
-            </select><br /><br />*/}
-
-            <label>Postcode </label>{requiredField}
-            <input className="form-control form-text" type="text" name="postcode" size="4" maxLength="4" onChange={this.handleChange.bind(this)} value={this.state.postcode} /><br/>
-
-            <h3 style={{color: "#a3c95c"}}>Trip Details</h3>
+            <h3 style={{color: "#c2b49a"}}>Trip Details</h3>
             <label><input type="checkbox" name="readDescription" value={this.state.readDescription} onChange={this.handleChange.bind(this)} />
             &nbsp;I have read the detailed description for this trip. {requiredField}</label><br />
             <label><input type="checkbox" name="readDifficultyInfo" value={this.state.readDifficultyInfo} onChange={this.handleChange.bind(this)} />
@@ -365,7 +338,7 @@ class RegistrationForm extends Component {
             <label><input type="checkbox" name="agreeToHaveChecked" value={this.state.agreeToHaveChecked} onChange={this.handleChange.bind(this)} />
             &nbsp;I agree to have a guide check my gear prior to departing for the trip (overnight trips only). {requiredField}</label><br />
 
-            <h3 style={{color: "#a3c95c"}}>Catering Information</h3>
+            <h3 style={{color: "#c2b49a"}}>Catering Information</h3>
 
             <label>
               Please specify any dietary requirements {requiredField} </label><br/>
@@ -391,7 +364,7 @@ class RegistrationForm extends Component {
               <input type="checkbox" name="supperHotChocolate" value={this.state.supperHotChocolate} onChange={this.handleChange.bind(this)} />&nbsp;Hot Chocolate&nbsp;<br/></section>) : (<section></section>)}
 
 
-            <h3 style={{color: "#a3c95c"}}>Religious Background</h3>
+            <h3 style={{color: "#c2b49a"}}>Religious Background</h3>
 
             <label>Do you identify as “Christian”? </label> &nbsp; <label> Yes &nbsp;</label><input type="radio" name="idAsChristian" value="yes" onChange={this.handleChange.bind(this)} checked={this.state.idAsChristian === "yes"}/>
             <label>&nbsp;&nbsp;No &nbsp;</label><input type="radio" name="idAsChristian" value="no" onChange={this.handleChange.bind(this)} checked={this.state.idAsChristian === "no"}/>
@@ -413,7 +386,7 @@ class RegistrationForm extends Component {
             Briefly describe what “faith” means to you
             <input className="form-control form-text required" type="text" name="faithMeaning" size="60" maxLength="128" onChange={this.handleChange.bind(this)} value={this.state.faithMeaning} />
 
-            <h3 style={{color: "#a3c95c"}}>Medical Information</h3>
+            <h3 style={{color: "#c2b49a"}}>Medical Information</h3>
             <h5>It is vital that you fill this form accurately in case of an incident that requires medical attention.</h5><br />
             <strong>Emergency contact details</strong><br /><br />
             Name<br />
@@ -433,6 +406,7 @@ class RegistrationForm extends Component {
             Doctors phone number:<br />
             <input className="form-control form-text required" type="text" name="doctorsPhone" size="60" maxLength="128" onChange={this.handleChange.bind(this)} value={this.state.doctorsPhone} />
 
+            <br />
             <label>Do you have any medical conditions</label> <br/>
             <label> Yes &nbsp;</label><input type="radio" name="medicalConditions" value="yes" onChange={this.handleChange.bind(this)} checked={this.state.medicalConditions === "yes"}/>
             <label>&nbsp;&nbsp;No &nbsp;</label><input type="radio" name="medicalConditions" value="no" onChange={this.handleChange.bind(this)} checked={this.state.medicalConditions === "no"}/><br/>
@@ -471,9 +445,9 @@ class RegistrationForm extends Component {
             <label>&nbsp;&nbsp;No &nbsp;</label><input type="radio" name="arthritis" value="no" onChange={this.handleChange.bind(this)} checked={this.state.arthritis === "no"}/><br/>
 
             <label>Pregnancy</label> <br/>
-            If yes: number of months<br />
             <label> Yes &nbsp;</label><input type="radio" name="pregnancy" value="yes" onChange={this.handleChange.bind(this)} checked={this.state.pregnancy === "yes"}/>
             <label>&nbsp;&nbsp;No &nbsp;</label><input type="radio" name="pregnancy" value="no" onChange={this.handleChange.bind(this)} checked={this.state.pregnancy === "no"}/><br/>
+            {this.state.pregnancy === 'yes' ? (<section><label>How many months? &nbsp;</label> <input type="number" name="monthsPregnant" onChange={this.handleChange.bind(this)} value={this.state.monthsPregnant} /></section>) : (<section></section>)}
 
             <label>Diabetes</label> <br/>
             <label> Yes &nbsp;</label><input type="radio" name="diabetes" value="yes" onChange={this.handleChange.bind(this)} checked={this.state.diabetes === "yes"}/>
@@ -483,13 +457,14 @@ class RegistrationForm extends Component {
             <label> Yes &nbsp;</label><input type="radio" name="allergies" value="yes" onChange={this.handleChange.bind(this)} checked={this.state.allergies === "yes"}/>
             <label>&nbsp;&nbsp;No &nbsp;</label><input type="radio" name="allergies" value="no" onChange={this.handleChange.bind(this)} checked={this.state.allergies === "no"}/><br/>
 
-            <label>Other</label> <br/>
+            <label>Other (please specify below)</label> <br/>
             <label> Yes &nbsp;</label><input type="radio" name="otherCondition" value="yes" onChange={this.handleChange.bind(this)} checked={this.state.otherCondition === "yes"}/>
             <label>&nbsp;&nbsp;No &nbsp;</label><input type="radio" name="otherCondition" value="no" onChange={this.handleChange.bind(this)} checked={this.state.otherCondition === "no"}/><br/>
-            If yes: please specify<br /> Please give details of any medical condition<br />
+            <br/><label>Please give any details for your medical condition(s).</label><br/>
+              <textarea className="form-control" name="medicalConditionDetails" rows="5" onChange={this.handleChange.bind(this)} value={this.state.medicalConditionDetails} />
 </section>) : (<section></section>)}
-
-            <label>Are you allergic to anything, including drugs or medication?</label> <br/>
+            <br/>
+            <label>Are you allergic to anything, including drugs or medication (redundant given previous question includes allergies?)?</label> <br/>
             <label> Yes &nbsp;</label><input type="radio" name="allergicToAnything" value="yes" onChange={this.handleChange.bind(this)} checked={this.state.allergicToAnything === "yes"}/>
             <label>&nbsp;&nbsp;No &nbsp;</label><input type="radio" name="allergicToAnything" value="no" onChange={this.handleChange.bind(this)} checked={this.state.allergicToAnything === "no"}/><br/>
 
@@ -498,8 +473,9 @@ class RegistrationForm extends Component {
               <textarea className="form-control" name="allergyComments" rows="5" onChange={this.handleChange.bind(this)} value={this.state.allergyComments} />
 </section>) : (<section></section>)}
 
-            Medication &amp; treatment:<br />
-            Please give details of any medication (including dose) or current medical treatments. <br />
+            <br/><strong>Medication &amp; treatment</strong><br /><br/>
+            <label>Please give details of any medication (including dose) or current medical treatments.</label><br/>
+              <textarea className="form-control" name="medicationAndTreatment" rows="5" onChange={this.handleChange.bind(this)} value={this.state.medicationAndTreatment} />
             Please also email us any other relevant information, for instance an anaphylaxis/asthma management plan.<br /><br />
 
             <label>Do you wear glasses or contact lenses?</label> <br/>
@@ -520,7 +496,7 @@ class RegistrationForm extends Component {
               Please provide any additional information that would be helpful for managing your wellbeing {requiredField}</label><br/>
               <textarea className="form-control" name="wellbeingComments" rows="5" onChange={this.handleChange.bind(this)} value={this.state.wellbeingComments} />
 
-            <h3 style={{color: "#a3c95c"}}>Consent and Declaration</h3>
+            <h3 style={{color: "#c2b49a"}}>Consent and Declaration</h3>
 
 
             <label>
@@ -546,10 +522,9 @@ class RegistrationForm extends Component {
       registrationForm = (
         <section>
           <p>{eventDates}<br/>
-          Camp Clayton, Ulverstone</p>
-          <p>Registrations Close 2nd September 2018</p>
+          {eventLocation}</p>
 
-          <h3 style={{color: "#a3c95c"}}>Registrations for --- have now closed.</h3>
+          <h3 style={{color: "#c2b49a"}}>Registrations for --- have now closed.</h3>
         </section>
     )
     }
