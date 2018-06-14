@@ -498,16 +498,75 @@ class RegistrationForm extends Component {
 
             <h3 style={{color: "#c2b49a"}}>Consent and Declaration</h3>
 
+            <h5>Please read the following information carefully</h5>
+            <br />
+            <label><input type="checkbox" name="physicallyDemandingAccept" value={this.state.physicallyDemandingAccept} onChange={this.handleChange.bind(this)} />
+            &nbsp;  I am aware in signing this document for my participation in an Explore trip that certain
+            elements will be physically and/or emotionally demanding. I acknowledge that while the
+            organisers will make every reasonable effort to minimise exposure to known risks, all
+            hazards and dangers associated with these activities cannot be foreseen or may be beyond
+            the control of the organisers. {requiredField}</label><br /><br />
 
-            <label>
-              Other Comments {requiredField}</label><br/>
-              <textarea className="form-control" name="comments" rows="5" onChange={this.handleChange.bind(this)} value={this.state.comments} />
-            <br/>
-            <span style={{fontSize: "14px"}}>
-              Please add any other comments that you would like to pass onto the organisers.
-            </span>
-            <br/><br/>
+            <label><input type="checkbox" name="riskAccept" value={this.state.riskAccept} onChange={this.handleChange.bind(this)} />
+            &nbsp; I agree and I understand that the general nature of the risks may include:
+            Physical and/or bodily injury including but not limited to fractures, strains, lacerations, spinal
+            injuries, partial or total paralysis, head or brain injuries, loss of limb or body part; and
+            Psychological injury, stress and/or emotional distress; and Associated trauma; and Death. {requiredField}</label><br /><br />
 
+            <label><input type="checkbox" name="civilLiabilityAccept" value={this.state.civilLiabilityAccept} onChange={this.handleChange.bind(this)} />
+            &nbsp; I acknowledge that the warning contained in this document constitutes a risk warning
+            pursuant to the Civil Liability Act 2002. {requiredField}</label><br /><br />
+
+            <label><input type="checkbox" name="followSafetyGuidelinesAccept" value={this.state.riskAccept} onChange={this.handleChange.bind(this)} />
+            &nbsp; I agree that should I fail to comply with any safety guidelines and/or written and/or verbal
+            instructions during the course of the trip this may compromise the safety and well being of
+            the other participants and leaders and as a consequence I may be directed to leave the
+            activity at my expense. {requiredField}</label><br /><br />
+
+            <label><input type="checkbox" name="inherentRiskAccept" value={this.state.inherentRiskAccept} onChange={this.handleChange.bind(this)} />
+            &nbsp; I the undersigned person acknowledge that there is inherent risk involved in the activities
+            undertaken. {requiredField}</label><br /><br />
+
+            <label><input type="checkbox" name="treatmentAuthorisation" value={this.state.treatmentAuthorisation} onChange={this.handleChange.bind(this)} />
+            &nbsp; I authorise the organisers to arrange immediate medical attention or treatment including
+            the administration via first aid qualified guides of medication such as paracetamol,
+            ibuprofen, antihistamines and adrenalin. I also authorise the organiser to arrange
+            emergency medical assistance if required. I accept responsibility of any expenses incurred,
+            including transport. {requiredField}</label><br /><br />
+
+            <label><input type="checkbox" name="lostEquipmentObligation" value={this.state.lostEquipmentObligation} onChange={this.handleChange.bind(this)} />
+            &nbsp; I acknowledge that if I lose or damage equipment that is on loan then I am expected to pay
+            for repairs or replacement of the equipment. {requiredField}</label><br /><br />
+
+            <label>I am over 18 years of age.</label>
+            <label> Yes &nbsp;</label><input type="radio" name="over18" value="yes" onChange={this.handleChange.bind(this)} checked={this.state.over18 === "yes"}/>
+            <label>&nbsp;&nbsp;No &nbsp;</label><input type="radio" name="over18" value="no" onChange={this.handleChange.bind(this)} checked={this.state.over18 === "no"}/><br/>
+
+
+            {this.state.over18 === 'yes' ? (<section>
+              I, [full name], declare that the information I have provided in this registration form about myself is
+              true and correct.
+              Signature:
+              Date:
+              </section>) : (<section></section>)}
+
+              {this.state.over18 === 'no' ? (<section>
+                To be completed by the participant:
+                I, [full name], declare that the information I have provided in this registration form about myself is
+                true and correct.
+                Signature:
+                Date:
+                To be completed by the participant’s parent/guardian:
+                I, [full name], the parent/guardian of [full name], declare that the information provided in this
+                registration form about my child is true and correct.
+                I have read this registration form, the detailed trip description and the relevant difficulty information
+                and I give permission for my child to participate in this trip.
+                Signature:
+                Date:
+              </section>) : (<section></section>)}
+
+
+            <br />
             <input type="submit" value="Register" className="btn btn-primary"/>
 
             <br/><br/>
