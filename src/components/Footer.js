@@ -11,7 +11,7 @@ class Footer extends Component {
           <div className="container">
             <div className="row">
 
-                          <div id="footer-second-column-region" className="footer-second-column col-xs-12 col-md-6">
+                          <div id="footer-second-column-region" className="footer-second-column col-xs-12 col-md-12">
                     <div className="region region-footer-second-column">
 
       <div id="block-block-8" className="block block-block">
@@ -25,7 +25,7 @@ class Footer extends Component {
       </div>  </div>
                 </div> {/* /footer-second-column-region */}
 
-                          <div id="footer-third-column-region" className="footer-third-column col-xs-12 col-md-6">
+                  {/*        <div id="footer-third-column-region" className="footer-third-column col-xs-12 col-md-6">
                     <div className="region region-footer-third-column">
 
       <div className="block block-block">
