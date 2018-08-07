@@ -11,7 +11,6 @@ class HomePageContent extends Component {
         <div className="content-2 bg-color-white text-color-default" >
           <div className="container">
             <div className="row">
-              <WhereToFindUs />
               <UpcomingEvents />
             </div>
           </div>

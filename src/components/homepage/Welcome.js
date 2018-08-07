@@ -13,7 +13,6 @@ class Welcome extends Component {
 
                   <div className="region region-content">
 
-        <div className="block block-system">
 
 
         <div className="content">
@@ -22,22 +21,22 @@ class Welcome extends Component {
         <div className="content">
           <div className="field field-name-body field-type-text-with-summary field-label-hidden"><div className="field-items">
           <div className="field-item even">
-            <p>Welcome to Explore Tasmania.</p>
-            <p>
-              Our goal is to provide Christians with a space to take their friends into the wilderness where God’s existence is evident through general revelation
-              and then study the Bible together to hear how God has revealed himself through Jesus Christ.
-            </p>
+            <h2>Welcome to Explore Tasmania.</h2>
+            <h3>Who we are</h3>
+            <p>We are a group of Christians passionate about the outdoors and keen to get people thinking about faith.</p>
 
-            <br />
-            <br />
+            <h3>What we do</h3>
+            <p>We take small groups into the wilderness where we can think together about the bigger things in life. We have experienced guides and specialist equipment so that we can provide you with the opportunity to explore your boundaries in a safe environment.</p>
 
-            <p><em>This site is currently under construction and contains some placeholder items below.</em></p>
+            <h3>Why join us?</h3>
+            <p>We are offering you the opportunity to step back from the busyness of life and think about deeper things: people, nature, yourself, God.</p>
+
           </div>
           </div></div>  </div>
 
         </div>
         </div>
-        </div>  </div>
+        </div>
 
               </div> {/* /main-content-region */}
             </div> {/* /row */}

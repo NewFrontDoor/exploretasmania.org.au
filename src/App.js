@@ -10,6 +10,7 @@ import './assets/css/mediaelement/mediaelementplayer.min.css';
 
 import './assets/css/simplenews/simplenews.css';
 import './assets/css/alignmentstyles.css';
+import './assets/css/custom.css';
 
 
 import './assets/css/font-awesome/font-awesome.min.css';
@@ -26,7 +27,7 @@ import './assets/nestor/css/style.css';
 
 import './assets/css/fontyourface/font.css';
 
-import './assets/nestor/css/color/brown.css';
+import './assets/nestor/css/color/green.css';
 
 class App extends Component {
   render() {

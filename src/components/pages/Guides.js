@@ -18,7 +18,7 @@ class Guides extends Component {
                   <div className="breadcrumbs">
                     <a href="/">Home</a>
                     <span className="delimiter">›</span>
-                    <span title="" className="nolink">Page Category</span>
+                    <span title="" className="nolink">Guides</span>
                   </div>
                 </div>
               </div>

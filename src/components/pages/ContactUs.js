@@ -1,6 +1,68 @@
 import React, { Component } from 'react';
 
+import validator from 'validator';
+
 class ContactUs extends Component {
+  constructor(){
+    super();
+    this.state = {nName: "",
+                  email: "",
+                  message: "",
+                  }
+
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleChange(e) {
+    let value = e.target.type === 'checkbox' ? e.target.checked : e.target.value;
+
+    var change = {};
+    change[e.target.name] = value;
+    this.setState(change);
+    console.log(this.state)
+  }
+
+  handleSubmit(e) {
+    e.preventDefault();
+    var errorMessage = "";
+
+    if(validator.isEmpty(this.state.name))
+    {
+      errorMessage += "Please enter your name.\n";
+    }
+    if(validator.isEmpty(this.state.email) || !validator.isEmail(this.state.email))
+    {
+      errorMessage += "Please enter a valid email address.\n";
+    }
+
+
+    if(errorMessage !== "")
+    {
+      this.setState({formErrorMessage:errorMessage});
+      return false;
+    }
+    else
+    {
+      this.setState({formValid:true});
+      console.log(this.state);
+      /*handle posting to drupal and show success message*/
+      var form = new FormData();
+      form.append("webform", "8e070048-9aaf-4371-a0de-35bb5c3d28e6");
+      form.append("submission[data][0][values][0]", escape(this.state.name));
+      form.append("submission[data][1][values][0]", escape(this.state.email));
+      form.append("submission[data][2][values][0]", escape(this.state.message));
+      form.append("submission[data][5][values][0]", escape(this.state.tripNotifications));
+      form.append("submission[data][6][values][0]", escape(this.state.prayerNewsletter));
+
+      /*var that = this;
+      postToWebform(form, function(data){
+        that.setState({submissionID:data.sid})
+        that.setState({formSubmitted:true})
+      })*/
+    }
+
+  }
+
   render() {
     return (
       <section>
@@ -17,65 +79,87 @@ class ContactUs extends Component {
                 <div id="page-breadcrumbs-block" className="page-breadcrumbs block">
                   <div className="breadcrumbs">
                     <a href="/">Home</a>
-                    <span className="delimiter">›</span>
-                    <span title="" className="nolink">Page Category</span>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
+
         <div id="content-region">
-          <div className="container">
-            <div className="row">
-              <div id="main-content-region" className="main-content col-xs-12">
-                <div className="region region-content">
-                  <div id="block-system-main" className="block block-system">
-                    <div className="content">
-                      <div className="node node-page clearfix">
-                        <div className="content">
-                          <div className="field field-name-body field-type-text-with-summary field-label-hidden">
-                          <div className="field-items">
-                          <div className="field-item even">
-                          <p><div className="media media-element-container media-default">
-                            <div className="content">
-                              <img height="191" width="286" className="media-element file-default" data-delta="1" src="https://summerleaschurch.org/sites/summerleaschurch.org/files/congregation_0.png" alt="" />  </div>
-                            </div>
+    <div className="container">
+      <div className="row">
 
-                          </p><blockquote>Contact Us Content Here </blockquote>
-
-                          <p><div className="media media-element-container media-default">
-                          <div className="content">
-                            <img height="251" width="300" className="media-element file-default" data-delta="1" src="https://summerleaschurch.org/sites/summerleaschurch.org/files/welcome.png" alt="" />
-                          </div>
-                      </div>
-                    </p>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer at metus feugiat enim aliquet aliquet. Etiam fringilla vel diam eu consectetur. Nunc eget volutpat massa. Vestibulum lorem purus,
-                    dapibus in ullamcorper non, ullamcorper sed nibh. Aliquam vitae est euismod, elementum mauris ut, mollis purus. Nam dui justo, congue quis enim sit amet, mollis mattis velit. Maecenas ac velit eu
-                    ipsum finibus imperdiet.
-                    <br />
-                    <br/>
-                    Nullam at maximus mi. Sed interdum magna et ex sodales tincidunt. Morbi tristique erat ultricies mauris scelerisque, eu finibus erat tempus. Curabitur et purus vehicula, accumsan enim eget, porttitor
-                    urna. Ut pellentesque varius magna et ornare. Nam elit magna, bibendum et felis et, aliquam congue lectus. Cras tincidunt eros ut lorem egestas, eu consequat enim pharetra. Suspendisse ante elit,
-                    convallis non tincidunt vel, lacinia et nunc. Curabitur magna metus, faucibus at rhoncus pellentesque, rhoncus vel ipsum. Aenean eu est tempor, fermentum justo eu, dignissim purus.
-                    </p></div></div></div></div>
+        {/* If the Sidebar First has content then it will be rendered */}
 
 
+        {/* /Sidebar First region */}
 
-                </div>
-                  </div>
-                </div>  </div>
+        {/* Rendering of the main content */}
+
+        <div id="main-content-region" className="main-content col-xs-12 col-md-8 col-md-offset-2">
+
+          {/* Output the messages */}
+
+          {/* Rendering the content */}
+            <div className="region region-content">
+
+<div id="block-block-54" className="block block-block">
 
 
+  <div className="content">
+    We would love to hear from you! <br/><br/>
 
-                        </div>
+    Feel free to contact us by emailing <a href="mailto:info@exploretasmania.org.au">info@exploretasmania.org.au</a> or by filling out the following contact form and we will get back to you as soon as possible.
+    </div>
+</div>
 
 
+  <div className="content">
+    <div className="contacts">
+  <div className="row">
 
 
-                      </div>
-                    </div>
-                  </div>
+    <div className="col-xs-12 col-sm-12 margin-top-xs-40">
+      <h5>Contact Us</h5>
+      <p>
+      <b>Email:</b>&nbsp; <a href="mailto:info@exploretasmania.org.au">info@exploretasmania.org.au</a></p>
+    </div>
+
+  </div> {/* /row */}
+</div> {/* /contacts */}  </div>
+</div>
+
+
+  <div className="content">
+    <form onSubmit={this.handleSubmit}><div><div className="form-item form-group form-type-textfield form-item-name">
+  <label htmlFor="edit-name">Your name <span className="form-required" title="This field is required.">*</span></label>
+ <input className="form-control form-text required" type="text" id="edit-name" name="name" value="" size="60" maxLength="255" />
+</div>
+<div className="form-item form-group form-type-textfield form-item-mail">
+  <label htmlFor="edit-mail">Your e-mail address <span className="form-required" title="This field is required.">*</span></label>
+ <input className="form-control form-text required" type="text" id="edit-mail" name="mail" value="" size="60" maxLength="255" />
+</div>
+<div className="form-item form-group form-type-textarea form-item-message">
+  <label htmlFor="edit-message">Message <span className="form-required" title="This field is required.">*</span></label>
+ <div className="form-textarea-wrapper"><textarea className="form-control form-textarea required" id="edit-message" name="message" cols="60" rows="5"></textarea></div>
+</div>
+
+<label>I would like to:</label> <br/>
+<label><input type="checkbox" name="tripNotifications" value={this.state.tripNotifications} onChange={this.handleChange.bind(this)} />
+&nbsp;Receive notification of upcoming trips. </label><br />
+<label><input type="checkbox" name="prayerNewsletter" value={this.state.prayerNewsletter} onChange={this.handleChange.bind(this)}/>
+&nbsp;Subscribe to Explore’s prayer newsletter. </label><br />
+
+<br/>
+<div className="form-actions form-wrapper" id="edit-actions"><input className="btn btn-primary btn-sm form-submit" type="submit" id="edit-submit" name="op" value="Send message" /></div></div></form>  </div>
+</div>
+        </div> {/* /main-content-region */}
+
+
+      </div> {/* /row */}
+    </div> {/* /container */}
+
       </section>
     );
   }

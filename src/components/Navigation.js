@@ -1,6 +1,6 @@
 /* eslint-disable */
 import React, { Component } from 'react';
-//import logo from '../assets/websiteHeader.png';
+import logo from '../assets/logo-175px.png';
 
 class Navigation extends Component {
   render() {
@@ -10,8 +10,7 @@ class Navigation extends Component {
           <div className="row">
 
             <div id="logo-region" className="logo col-xs-12 col-md-3 text-center-sm">
-                        {/*<a href="/"><img src={logo} alt="Home" className="logo" /></a>*/}
-                        <h2 style={{marginTop:"40px"}}>Explore Tasmania</h2>
+                        <a href="/"><img src={logo} alt="Home" className="logo" /></a>
                       </div> {/* /logo-region */}
 
             <div id="menu-region" className="col-xs-12 col-md-9">
@@ -49,7 +48,7 @@ class Navigation extends Component {
 
 
       <li className="tb-megamenu-item level-1 mega">
-      <a href="/Events" >Upcoming Events</a>
+      <a href="/Events" >Our Trips</a>
       </li>
 
       <li className="tb-megamenu-item level-1 mega">

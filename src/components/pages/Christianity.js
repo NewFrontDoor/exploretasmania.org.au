@@ -18,7 +18,7 @@ class Christianity extends Component {
                   <div className="breadcrumbs">
                     <a href="/">Home</a>
                     <span className="delimiter">›</span>
-                    <span title="" className="nolink">Page Category</span>
+                    <span title="" className="nolink">Christianity</span>
                   </div>
                 </div>
               </div>
@@ -37,27 +37,38 @@ class Christianity extends Component {
                           <div className="field field-name-body field-type-text-with-summary field-label-hidden">
                           <div className="field-items">
                           <div className="field-item even">
-                          <p><div className="media media-element-container media-default">
+
+                          {/*}<p><div className="media media-element-container media-default">
                             <div className="content">
                               <img height="191" width="286" className="media-element file-default" data-delta="1" src="https://summerleaschurch.org/sites/summerleaschurch.org/files/congregation_0.png" alt="" />  </div>
                             </div>
 
-                          </p><blockquote>Christianity Content Here </blockquote>
+                          </p>*/}
 
-                          <p><div className="media media-element-container media-default">
+                          <blockquote>John 3:16 For God so loved the world that he gave his one and only Son, that whoever believes in him shall not perish but have eternal life. </blockquote>
+
+                          {/*<p><div className="media media-element-container media-default">
                           <div className="content">
                             <img height="251" width="300" className="media-element file-default" data-delta="1" src="https://summerleaschurch.org/sites/summerleaschurch.org/files/welcome.png" alt="" />
                           </div>
                       </div>
-                    </p>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer at metus feugiat enim aliquet aliquet. Etiam fringilla vel diam eu consectetur. Nunc eget volutpat massa. Vestibulum lorem purus,
-                    dapibus in ullamcorper non, ullamcorper sed nibh. Aliquam vitae est euismod, elementum mauris ut, mollis purus. Nam dui justo, congue quis enim sit amet, mollis mattis velit. Maecenas ac velit eu
-                    ipsum finibus imperdiet.
-                    <br />
-                    <br/>
-                    Nullam at maximus mi. Sed interdum magna et ex sodales tincidunt. Morbi tristique erat ultricies mauris scelerisque, eu finibus erat tempus. Curabitur et purus vehicula, accumsan enim eget, porttitor
-                    urna. Ut pellentesque varius magna et ornare. Nam elit magna, bibendum et felis et, aliquam congue lectus. Cras tincidunt eros ut lorem egestas, eu consequat enim pharetra. Suspendisse ante elit,
-                    convallis non tincidunt vel, lacinia et nunc. Curabitur magna metus, faucibus at rhoncus pellentesque, rhoncus vel ipsum. Aenean eu est tempor, fermentum justo eu, dignissim purus.
+                    </p>*/}
+                    <p>We are a group of Bible-believing Christians from different churches across Tasmania.</p><br />
+                        We uphold the fundamental truths of Christianity including: <br/>
+                        <ul className="padding-5" style={{marginLeft: "30px", marginTop: "10px"}}>
+                          <li>The divine inspiration and infallibility of Holy Scripture as originally given and its supreme authority in all matters of faith and conduct.</li>
+                          <li>The unity of the Father, the Son and the Holy Spirit in the Godhead.</li>
+                          <li>The universal sinfulness and guilt of humanity since the fall, rendering men and women subject to God&apos;s wrath and condemnation.</li>
+                          <li>The conception of Jesus Christ by the Holy Spirit and his birth by the virgin Mary.</li>
+                          <li>Redemption from the guilt, penalty and power of sin only through the sacrificial death, as our representative and substitute, of Jesus Christ, the incarnate Son of God.</li>
+                          <li>The bodily resurrection of Jesus Christ from the dead.</li>
+                          <li>The necessity of the work of the Holy Spirit to make the death of Christ effective in the individual sinner, granting him or her repentance towards God, and faith in Jesus Christ.</li>
+                          <li>The indwelling and work of the Holy Spirit in the believer.</li>
+                          <li>The expectation of the personal return of the Lord Jesus Christ.</li>
+                        </ul>
+                        <br/>
+                        <p>We desire to share these truths with the all people, in accordance with Jesus’ command in Matthew 28:19-20: Go and make disciples of all nations, baptizing them in the name of the Father and of the Son and of the Holy Spirit, and teaching them to obey everything I have commanded you.
+
                     </p></div></div></div></div>
 
 

@@ -11,21 +11,7 @@ class Footer extends Component {
           <div className="container">
             <div className="row">
 
-                          <div id="footer-first-column-region" className="footer-first-column col-xs-12 col-md-4">
-                    <div className="region region-footer-first-column">
-
-      <div className="block block-block">
-
-
-      <div className="content">
-        <div className="footer-address text-center">
-      <i className="icon ion-ios7-location-outline size-32 margin-bottom-20"></i>
-      <p><a href="https://goo.gl/maps/bgsEwUyCTBK2">Explore Tasmania</a><br />45 Melville St, West Hobart TAS 7000</p>
-      </div> {/* /footer-address */}  </div>
-      </div>  </div>
-                </div> {/* /footer-first-column-region */}
-
-                          <div id="footer-second-column-region" className="footer-second-column col-xs-12 col-md-4">
+                          <div id="footer-second-column-region" className="footer-second-column col-xs-12 col-md-6">
                     <div className="region region-footer-second-column">
 
       <div id="block-block-8" className="block block-block">
@@ -34,12 +20,12 @@ class Footer extends Component {
       <div className="content">
         <div className="footer-mail text-center">
       <i className="icon ion-ios7-email-outline size-32 margin-bottom-20"></i>
-      <p><a href="mailto:contactus@exploretasmania.org.au">contactus@exploretasmania.org.au</a></p>
+      <p><a href="mailto:info@exploretasmania.org.au">info@exploretasmania.org.au</a></p>
       </div> {/* /footer-mail */}  </div>
       </div>  </div>
                 </div> {/* /footer-second-column-region */}
 
-                          <div id="footer-third-column-region" className="footer-third-column col-xs-12 col-md-4">
+                          <div id="footer-third-column-region" className="footer-third-column col-xs-12 col-md-6">
                     <div className="region region-footer-third-column">
 
       <div className="block block-block">

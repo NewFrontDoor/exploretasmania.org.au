@@ -2,6 +2,12 @@
 import React, { Component } from 'react';
 import _ from 'lodash';
 
+import overlay from '../../assets/slider-overlay.png';
+import slider1 from '../../assets/slider-1.jpg';
+import slider2 from '../../assets/slider-2.jpg';
+import slider3 from '../../assets/slider-3.jpg';
+import slider4 from '../../assets/slider-4.jpg';
+
 /*
 const slides = [{"src": "https://summerleaschurch.org/sites/summerleaschurch.org/files/styles/image_full_width/public/community%20web%20slider.jpg?itok=wztd4SUb",
                     "alt": "Welcome to Summerleas Christian Church",
@@ -17,12 +23,31 @@ const slides = [{"src": "https://summerleaschurch.org/sites/summerleaschurch.org
                   ];
 */
 
-const slides = [{"src": 'https://summerleaschurch.org/sites/summerleaschurch.org/files/styles/image_full_width/public/gc-slider.jpg?itok=7POEz39Z',
+const slides = [{"src": slider1,
                     "alt": "",
                     "caption":
                       {
-                       "header": "Welcome to Explore Tasmania"
-                      }}
+                        //"header": "Welcome to Explore Tasmania"
+                      }},
+                {"src": slider2,
+                  "alt": "",
+                  "caption":
+                    {
+                      //"header": "Welcome to Explore Tasmania"
+                    }},
+                {"src": slider3,
+                    "alt": "",
+                    "caption":
+                      {
+                        //"header": "Welcome to Explore Tasmania"
+                      }},
+              {"src": slider4,
+                  "alt": "",
+                  "caption":
+                    {
+                      //"header": "Welcome to Explore Tasmania"
+                    }}
+
                   ];
 
 class Slider extends Component {
@@ -35,10 +60,11 @@ class Slider extends Component {
             <li key={_.uniqueId()}>
                 <figure>
                     <img className="img-responsive img-full-width" src={slide.src} width="1440" height="600" />
-                    <figcaption className="overlay overlay-30 text-center">
+                    <figcaption className="text-center">
                       <div className="highlighted-slider-2-content">
                         {slide.caption.header ? (<h1 className="slider-title">{slide.caption.header}</h1>) : (<h1></h1>)}
                         {slide.caption.description ? (<p className="slider-description">{slide.caption.description}</p>) : (<p></p>)}
+                        <img className="img-responsive" src={overlay} />
                         {slide.caption.linkText ? (<a href={slide.caption.href} className="btn btn-default">{slide.caption.linkText}</a>) : (<section></section>)}
 
 
