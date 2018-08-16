@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
 
+import Hannah from '../../assets/Hannah.jpg';
+import Jordan from '../../assets/Jordan.jpg';
+import Pat from '../../assets/Pat.jpg';
+
 class Guides extends Component {
   render() {
     return (
@@ -30,48 +34,92 @@ class Guides extends Component {
             <div className="row">
               <div id="main-content-region" className="main-content col-xs-12">
                 <div className="region region-content">
-                  <div id="block-system-main" className="block block-system">
                     <div className="content">
-                      <div className="node node-page clearfix">
-                        <div className="content">
-                          <div className="field field-name-body field-type-text-with-summary field-label-hidden">
-                          <div className="field-items">
-                          <div className="field-item even">
-                          <p><div className="media media-element-container media-default">
-                            <div className="content">
-                              <img height="191" width="286" className="media-element file-default" data-delta="1" src="https://summerleaschurch.org/sites/summerleaschurch.org/files/congregation_0.png" alt="" />  </div>
-                            </div>
 
-                          </p><blockquote>Guides Content Here </blockquote>
-
-                          <p><div className="media media-element-container media-default">
-                          <div className="content">
-                            <img height="251" width="300" className="media-element file-default" data-delta="1" src="https://summerleaschurch.org/sites/summerleaschurch.org/files/welcome.png" alt="" />
+                    <div className="row guide-row">
+                      <div className="col-md-3">
+                        <div className="item-box">
+                          <figure>
+                            <img className="img-responsive" src={Pat} width="263" height="263" alt="" />
+                          </figure>
+                          <div className="item-box-desc text-center">
+                            <h4>Patrick Stam</h4>
+                            <small>Guide</small>
                           </div>
+                        </div>
                       </div>
-                    </p>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer at metus feugiat enim aliquet aliquet. Etiam fringilla vel diam eu consectetur. Nunc eget volutpat massa. Vestibulum lorem purus,
-                    dapibus in ullamcorper non, ullamcorper sed nibh. Aliquam vitae est euismod, elementum mauris ut, mollis purus. Nam dui justo, congue quis enim sit amet, mollis mattis velit. Maecenas ac velit eu
-                    ipsum finibus imperdiet.
-                    <br />
-                    <br/>
-                    Nullam at maximus mi. Sed interdum magna et ex sodales tincidunt. Morbi tristique erat ultricies mauris scelerisque, eu finibus erat tempus. Curabitur et purus vehicula, accumsan enim eget, porttitor
-                    urna. Ut pellentesque varius magna et ornare. Nam elit magna, bibendum et felis et, aliquam congue lectus. Cras tincidunt eros ut lorem egestas, eu consequat enim pharetra. Suspendisse ante elit,
-                    convallis non tincidunt vel, lacinia et nunc. Curabitur magna metus, faucibus at rhoncus pellentesque, rhoncus vel ipsum. Aenean eu est tempor, fermentum justo eu, dignissim purus.
-                    </p></div></div></div></div>
+
+                      <div className="col-md-6 bio-div">
+                        <p className="guide-bio">
+
+                        Patrick works as an Outdoor Education teacher at Calvin Christian School in Kingston Tasmania. He grew up in a Christian home and has been a believer most of his life.
+                        He attends Bay Christian Church in Blackmans Bay. Patrick is married to Anna and they have 3 young children, Eleanor, Rueben and Naomi.
+
+                        Patrick has a Certificate IV in Outdoor Recreation from TasTAFE and a Certificate in Adventure Tourism from Otago Polytechnic in New Zealand.
+                        Patrick has been leading on Christian outdoor camps from more than a decade. In the past he has worked as a guide on the Franklin River and a ski instructor at Cardrona in New Zealand.<br/><br/>
+
+                        Patrick is well respected in the Tasmanian Outdoor Community for his skills, safety, experience, excellent instructing skills and friendly nature.
+                        He instructs rock climbing, abseiling, white water kayaking and rafting, mountain biking, bushwalking and first aid.
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="row guide-row">
+                      <div className="col-md-3">
+                        <div className="item-box">
+                          <figure>
+                            <img className="img-responsive" src={Hannah} width="263" height="263" alt="" />
+                          </figure>
+                          <div className="item-box-desc text-center">
+                            <h4>Hannah Fair</h4>
+                            <small>Guide</small>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="col-md-6 bio-div">
+                        <p className="guide-bio">
+                        <strong>Relevant qualifications:</strong> Wilderness First Aid<br/><br/>
+                        <strong>Why I love the wilderness:</strong><br/>
+                        I love being surrounded by trees, mountains, oceans and people, with time to invest in them all.
+                        I love the physical exertion that many wilderness activities require. I love the feeling of standing on top of a mountain, taking in the beauty of God’s creation surrounding me.<br/><br/>
+                        <strong>Why I love God:</strong><br/>
+                        God created the world and He rules the world. He is so big and powerful and yet He cares so much about me that He sent Jesus to take the punishment for everything I have ever done wrong, so that I can spend eternity in paradise with Him.
+
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="row guide-row">
+                      <div className="col-md-3">
+                        <div className="item-box">
+                          <figure>
+                            <img className="img-responsive" src={Jordan} width="263" height="263" alt="" />
+                          </figure>
+                          <div className="item-box-desc text-center">
+                            <h4>Jordan Poland</h4>
+                            <small>Guide</small>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="col-md-6 bio-div">
+                        <p className="guide-bio">
+                        <strong>Relevant qualifications:</strong> Cert III in Outdoor Recreation (including First Aid, Guide Abseiling, Whitewater Rescue Level 2)<br/><br/>
+                        <strong>Why I love the wilderness:</strong><br/>
+                        From mountains to beaches, from plants to wildlife, we have some of the best in the world right here in Tasmania. I love the challenge that the wilderness can set, and the reward of getting to a destination. I love the feeling of ‘getting away’, how the worries and stresses of day to day life disappear. I love experiencing the wilderness with others, getting an opportunity to spend quality time together, getting to know each other better and talk about the bigger things in life.<br/><br/>
+                        <strong>Why I love God:</strong><br/>
+                        Because even in my worst moments, in the things I am ashamed of, He loved me so much that he paid the price for what I’ve done so that I can have a relationship with him. Even when I betrayed him, He still wanted to
+                        </p>
+                      </div>
+                    </div>
 
 
 
-                </div>
+
+
                   </div>
                 </div>  </div>
-
-
-
-                        </div>
-
-
-
 
                       </div>
                     </div>

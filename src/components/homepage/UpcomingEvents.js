@@ -18,9 +18,11 @@ class UpcomingEvents extends Component {
           <p>For a full calendar, <a href="#" title="View full calendar">click here</a>.</p>  */}
           <table className="col-xs-12">
             <thead>
-              <th style={{padding: "10px"}}>Date</th>
-              <th style={{padding: "10px"}}>Time</th>
-              <th style={{padding: "10px"}}>Event</th>
+              <tr>
+                <th style={{padding: "10px"}}>Date</th>
+                <th style={{padding: "10px"}}>Time</th>
+                <th style={{padding: "10px"}}>Event</th>
+              </tr>
             </thead>
             <tbody>
               <tr>

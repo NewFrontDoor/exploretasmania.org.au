@@ -24,16 +24,18 @@ class Navigation extends Component {
         <nav className="navbar nestor-main-menu" role="navigation">
           {/* Menu button for mobile display */}
           <div className="navbar-header">
-            <button type="button" className="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">MENU</button>
+            <button style={{marginTop: "25px"}} type="button" className="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">MENU</button>
           </div>
 
           {/* Navigation links */}
           <div className="collapse navbar-collapse navbar-ex1-collapse">
             <ul className="nav navbar-nav navbar-right">
               <li className="active"><a href="/" title="" className="active">Home</a></li>
-              <li><a href="#" title="">Visit us @ 9:30 Sundays</a></li>
-              <li><a href="#" title="">Talks</a></li><li><a href="#" title="">Contact Us</a></li>
-              <li><a href="#" title="">Find Out What&#039;s On</a></li></ul>
+              <li><a href="/Guides" title="">Guides</a></li>
+              <li><a href="/Christianity" title="">Christianity</a></li>
+              <li><a href="/ContactUs" title="">Contact Us</a></li>
+              <li><a href="/SupportUs" title="">Support Us</a></li>
+            </ul>
           </div> {/* /navbar-collapse */}
         </nav>
       </div>
@@ -42,7 +44,7 @@ class Navigation extends Component {
       <div className="block block-tb-megamenu">
         <div className="content">
           <div  className="tb-megamenu tb-megamenu-main-menu">
-            <button data-target=".nav-collapse" data-toggle="collapse" className="btn btn-navbar tb-megamenu-button" type="button"><i className="fa fa-reorder"></i></button>
+            {/*<button data-target=".nav-collapse" data-toggle="collapse" className="btn btn-navbar tb-megamenu-button" type="button"><i className="fa fa-reorder"></i></button>*/}
           <div className="nav-collapse  always-show">
           <ul  className="tb-megamenu-nav nav level-0 items-5">
 

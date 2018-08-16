@@ -1,3 +1,37 @@
 .padding-5 > li{
   padding: 5px;
 }
+
+.item-box {
+  display: block;
+  overflow: hidden;
+  margin: 16px 0;
+  width: 100%;
+  position: relative;
+  border-radius: 6px;
+
+}
+
+.item-box-desc{
+  padding: 20px 20px;
+    overflow: hidden;
+
+
+}
+
+.guide-bio{
+  padding-top: 15px;
+}
+
+.guide-row{
+   background: #f6f6f6;
+   border-radius: 8px;
+   padding: 15px;
+   margin-top:15px;
+}
+
+.bio-div{
+  border: solid #a9a9a9;
+  border-width: 0;
+  border-left-width: 1px;
+}
