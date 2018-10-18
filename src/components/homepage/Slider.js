@@ -4,7 +4,6 @@ import _ from 'lodash';
 
 import overlay from '../../assets/slider-overlay.png';
 import slider1 from '../../assets/slider-1.jpg';
-import slider2 from '../../assets/slider-2.jpg';
 import slider3 from '../../assets/slider-3.jpg';
 import slider4 from '../../assets/slider-4.jpg';
 
@@ -29,12 +28,6 @@ const slides = [{"src": slider1,
                       {
                         //"header": "Welcome to Explore Tasmania"
                       }},
-                {"src": slider2,
-                  "alt": "",
-                  "caption":
-                    {
-                      //"header": "Welcome to Explore Tasmania"
-                    }},
                 {"src": slider3,
                     "alt": "",
                     "caption":
