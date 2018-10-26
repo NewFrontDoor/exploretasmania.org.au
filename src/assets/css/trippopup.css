@@ -1,0 +1,42 @@
+.trip-info-popup {
+    font-size: 16px;
+  }
+  .trip-info-popup > span > .header {
+    width: 100%;
+    border-bottom: 1px solid gray;
+    font-size: 18px;
+    text-align: center;
+    padding: 5px;
+  }
+  .trip-info-popup > span > .content {
+    width: 100%;
+    padding: 10px 5px;
+    font-size: 16px;
+    
+  }
+  .trip-info-popup > span > .actions {
+    width: 100%;
+    padding: 10px 5px;
+    margin: auto;
+    text-align: center;
+  }
+  .trip-info-popup > span > .close {
+    cursor: pointer;
+    position: absolute;
+    display: block;
+    padding: 2px 5px;
+    line-height: 20px;
+    right: -10px;
+    top: -10px;
+    font-size: 24px;
+    background: #ffffff;
+    border-radius: 18px;
+    border: 1px solid #cfcece;
+    opacity: 1 !important;
+  }
+
+  .scrollable-frame{
+    overflow-y: auto;
+    overflow: auto;
+    height: 750px;
+  }

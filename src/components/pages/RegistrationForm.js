@@ -3,10 +3,9 @@
 import React, { Component } from 'react';
 import _ from 'lodash';
 import validator from 'validator';
-import {escape} from 'he'
+import { escape } from 'he'
 
-//import PaypalConfirmation from './confirmations/Paypal';
-//import ChequeDDConfirmation from './confirmations/ChequeDD';
+import DatePicker from 'react-date-picker'
 
 //import {postToWebform} from './postToAPI.js';
 
@@ -28,70 +27,60 @@ const currentFullCost = earlyBirdValid ? fullWeekendEarlyPrice : fullWeekendPric
 
 class RegistrationForm extends Component {
 
-  constructor(){
+  constructor() {
     super();
-    this.state = {firstName: "",
-                  lastName: "",
-                  email: "",
-                  phone: "",
-                  address: "",
-                  suburb: "",
-                  state: "",
-                  age: "",
-                  postcode: "",
-                  church: "",
-                  dietary: "",
-                  comments: "",
-                  formErrorMessage: "",
-                  formValid: false,
-                  formSubmitted: false,
-                  registrationType: "full",
-                  paymentType: "cheque",
-                  totalCost: 0,
-                  friday: false,
-                  fridayDinner: false,
-                  saturday: false,
-                  saturdayBreakfast: false,
-                  saturdayLunch: false,
-                  saturdayDinner: false,
-                  sundayBreakfast: false,
-                  sundayLunch: false,
-                  weekendDinnerAttendance: 'yes',
-                  nonChristianFriend: ""}
+    this.state = {
+      firstName: "",
+      lastName: "",
+      preferredName: "",
+      email: "",
+      phone: "",
+      address: "",
+      suburb: "",
+      state: "",
+      dob: null,
+      postcode: "",
+      church: "",
+      dietary: "",
+      comments: "",
+      formErrorMessage: "",
+      formValid: false,
+      formSubmitted: false,
+      registrationType: "full",
+      paymentType: "cheque",
+      totalCost: 0,
+      friday: false,
+      fridayDinner: false,
+      saturday: false,
+      saturdayBreakfast: false,
+      saturdayLunch: false,
+      saturdayDinner: false,
+      sundayBreakfast: false,
+      sundayLunch: false,
+      weekendDinnerAttendance: 'yes',
+      nonChristianFriend: ""
+    }
 
     this.resetRegistrationForm = this.resetRegistrationForm.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  resetRegistrationForm(){
-    this.setState({firstName: "",
-                  lastName: "",
-                  email: "",
-                  phone: "",
-                  address: "",
-                  suburb: "",
-                  state: "",
-                  age: "",
-                  postcode: "",
-                  church: "",
-                  dietary: "",
-                  comments: "",
-                  formErrorMessage: "",
-                  formValid: false,
-                  formSubmitted: false,
-                  registrationType: "full",
-                  paymentType: "cheque",
-                  totalCost: 0,
-                  friday: false,
-                  fridayDinner: false,
-                  saturday: false,
-                  saturdayBreakfast: false,
-                  saturdayLunch: false,
-                  saturdayDinner: false,
-                  sundayBreakfast: false,
-                  sundayLunch: false,
-                  weekendDinnerAttendance: 'yes',
-                  nonChristianFriend: ""})
+  resetRegistrationForm() {
+    this.setState({
+      firstName: "",
+      lastName: "",
+      email: "",
+      phone: "",
+      address: "",
+      postcode: "",
+      church: "",
+      dietary: "",
+      comments: "",
+      formErrorMessage: "",
+      formValid: false,
+      formSubmitted: false,
+      nonChristianFriend: ""
+    })
   }
 
   handleChange(e) {
@@ -103,89 +92,69 @@ class RegistrationForm extends Component {
     console.log(this.state)
   }
 
+  updateDate = date => this.setState({ dob: date })
+
   handleSubmit(e) {
     e.preventDefault();
     var errorMessage = "";
     let totalCost = 0;
 
-    if(validator.isEmpty(this.state.firstName))
-    {
+    if (validator.isEmpty(this.state.firstName)) {
       errorMessage += "Please enter your first name.\n";
     }
-    if(validator.isEmpty(this.state.lastName))
-    {
+    if (validator.isEmpty(this.state.lastName)) {
       errorMessage += "Please enter your last name.\n";
     }
-    if(validator.isEmpty(this.state.email) || !validator.isEmail(this.state.email))
-    {
+    if (validator.isEmpty(this.state.email) || !validator.isEmail(this.state.email)) {
       errorMessage += "Please enter a valid email address.\n";
     }
-    if(validator.isEmpty(this.state.phone))
-    {
+    if (this.state.dob === null) {
+      errorMessage += "Please enter your date of birth.\n";
+    }
+    if (validator.isEmpty(this.state.phone)) {
       errorMessage += "Please enter a phone number.\n";
     }
-    if(validator.isEmpty(this.state.address))
-    {
+    if (validator.isEmpty(this.state.address)) {
       errorMessage += "Please enter your address.\n";
     }
-    if(validator.isEmpty(this.state.suburb))
-    {
-      errorMessage += "Please enter your suburb.\n";
-    }
-    if(validator.isEmpty(this.state.state))
-    {
-      errorMessage += "Please select your state.\n";
-    }
-    if(validator.isEmpty(this.state.age))
-    {
-      errorMessage += "Please select your age range.\n";
-    }
-    if(validator.isEmpty(this.state.postcode))
-    {
-      errorMessage += "Please enter your postcode.\n";
-    }
-    if(validator.isEmpty(this.state.dietary))
-    {
+    if (validator.isEmpty(this.state.dietary)) {
       errorMessage += "Please enter your dietary requirements.\n";
     }
-    if(validator.isEmpty(this.state.comments))
-    {
+    if (validator.isEmpty(this.state.comments)) {
       errorMessage += "Please enter any relevant comments you may have\n";
     }
 
 
-    if(errorMessage !== "")
-    {
-      this.setState({formErrorMessage:errorMessage});
+    if (errorMessage !== "") {
+      this.setState({ formErrorMessage: errorMessage });
       return false;
     }
-    else
-    {
-      if(this.state.registrationType === "day"){
+    else {
+      if (this.state.registrationType === "day") {
         //sum total cost
-        if(this.state.friday){totalCost += dayPrice;}
-        if(this.state.saturday){totalCost += dayPrice;}
-        if(this.state.sunday){totalCost += dayPrice;}
+        if (this.state.friday) { totalCost += dayPrice; }
+        if (this.state.saturday) { totalCost += dayPrice; }
+        if (this.state.sunday) { totalCost += dayPrice; }
 
-        if(this.state.fridayDinner){totalCost += dinnerCost}
-        if(this.state.saturdayBreakfast){totalCost += breakfastCost}
-        if(this.state.saturdayLunch){totalCost += lunchCost}
-        if(this.state.saturdayDinner){totalCost += dinnerCost}
-        if(this.state.sundayBreakfast){totalCost += breakfastCost}
-        if(this.state.sundayLunch){totalCost += lunchCost}
+        if (this.state.fridayDinner) { totalCost += dinnerCost }
+        if (this.state.saturdayBreakfast) { totalCost += breakfastCost }
+        if (this.state.saturdayLunch) { totalCost += lunchCost }
+        if (this.state.saturdayDinner) { totalCost += dinnerCost }
+        if (this.state.sundayBreakfast) { totalCost += breakfastCost }
+        if (this.state.sundayLunch) { totalCost += lunchCost }
 
 
       }
-      else{
-          totalCost = currentFullCost;
+      else {
+        totalCost = currentFullCost;
       }
 
-      this.setState({totalCost:totalCost});
-      this.setState({formValid:true});
+      this.setState({ totalCost: totalCost });
+      this.setState({ formValid: true });
       console.log(this.state);
       /*handle posting to drupal and show success message*/
       var form = new FormData();
-      form.append("webform", "8e070048-9aaf-4371-a0de-35bb5c3d28e6");
+      form.append("webform", "webform-uuid");
       form.append("submission[data][1][values][0]", escape(this.state.firstName));
       form.append("submission[data][2][values][0]", escape(this.state.lastName));
       form.append("submission[data][3][values][0]", escape(this.state.email));
@@ -194,91 +163,8 @@ class RegistrationForm extends Component {
       form.append("submission[data][6][values][0]", escape(this.state.suburb));
       form.append("submission[data][7][values][0]", escape(this.state.state));
 
-      form.append("submission[data][21][values][0]", escape(this.state.age));
       form.append("submission[data][8][values][0]", escape(this.state.postcode));
-      form.append("submission[data][9][values][0]", escape(this.state.registrationType));
 
-
-
-      if(this.state.registrationType === 'full' || this.state.registrationType === 'earlyBird'){
-        form.append("submission[data][10][values][0]", escape(this.state.weekendDinnerAttendance));
-        form.append("submission[data][11][values][0]", 'friday');
-        form.append("submission[data][11][values][1]", 'saturday');
-        form.append("submission[data][11][values][2]", 'sunday');
-
-        if(this.state.weekendDinnerAttendance)
-        {
-          form.append("submission[data][12][values][0]", 'fridayDinner');
-          form.append("submission[data][12][values][1]", 'saturdayBreakfast');
-          form.append("submission[data][12][values][2]", 'saturdayLunch');
-          form.append("submission[data][12][values][3]", 'saturdayDinner');
-          form.append("submission[data][12][values][4]", 'sundayBreakfast');
-          form.append("submission[data][12][values][5]", 'sundayLunch');
-        }
-        else{
-          form.append("submission[data][12][values][0]", 'saturdayBreakfast');
-          form.append("submission[data][12][values][1]", 'saturdayLunch');
-          form.append("submission[data][12][values][2]", 'saturdayDinner');
-          form.append("submission[data][12][values][3]", 'sundayBreakfast');
-          form.append("submission[data][12][values][4]", 'sundayLunch');
-        }
-
-
-      }
-      else{
-        let i = 0;
-        if(this.state.friday)
-        {
-          form.append("submission[data][11][values]["+i+"0]", 'friday');
-          i++;
-        }
-        if(this.state.saturday)
-        {
-          form.append("submission[data][11][values]["+i+"0]", 'saturday');
-          i++;
-        }
-        if(this.state.sunday)
-        {
-          form.append("submission[data][11][values]["+i+"0]", 'sunday');
-          i++;
-        }
-
-        let j = 0;
-        if(this.state.fridayDinner){
-          form.append("submission[data][12][values]["+j+"]", 'fridayDinner');
-          form.append("submission[data][10][values][0]", 'yes');
-          j++;
-        }
-        else{
-          form.append("submission[data][10][values][0]", 'no');
-        }
-        if(this.state.saturdayBreakfast){
-          form.append("submission[data][12][values]["+j+"]", 'saturdayBreakfast');
-          j++;
-        }
-        if(this.state.saturdayLunch){
-          form.append("submission[data][12][values]["+j+"]", 'saturdayLunch');
-          j++;
-        }
-        if(this.state.saturdayDinner){
-          form.append("submission[data][12][values]["+j+"]", 'saturdayDinner');
-          j++;
-        }
-        if(this.state.sundayBreakfast){
-          form.append("submission[data][12][values]["+j+"]", 'sundayBreakfast');
-          j++;
-        }
-        if(this.state.sundayLunch){
-          form.append("submission[data][12][values]["+j+"]", 'sundayLunch');
-          j++;
-        }
-      }
-
-      form.append("submission[data][13][values][0]", escape(this.state.paymentType));
-      form.append("submission[data][14][values][0]", escape(this.state.church));
-      form.append("submission[data][15][values][0]", escape(this.state.dietary));
-      form.append("submission[data][16][values][0]", escape(this.state.comments));
-      form.append("submission[data][17][values][0]", totalCost);
 
       /*var that = this;
       postToWebform(form, function(data){
@@ -293,16 +179,16 @@ class RegistrationForm extends Component {
 
     var requiredField = (<span className="form-required" title="This field is required.">*</span>);
     var registrationForm;
-    if(!this.state.formValid && registrationsOpen){
+    if (!this.state.formValid && registrationsOpen) {
       registrationForm = (
         <section>
-          <p>{eventDates}<br/>
-          {eventLocation}</p>
+          <p>{eventDates}<br />
+            {eventLocation}</p>
 
           <br />
           <form onSubmit={this.handleSubmit}>
 
-            <h3 style={{color: "#c2b49a"}}>Contact Information</h3>
+            <h3 style={{ color: "#c2b49a" }}>Contact Information</h3>
 
             <label>First Name </label>{requiredField}
             <input className="form-control form-text required" type="text" name="firstName" size="60" maxLength="128" onChange={this.handleChange.bind(this)} value={this.state.firstName} />
@@ -310,12 +196,16 @@ class RegistrationForm extends Component {
             <label>Last Name </label>{requiredField}
             <input className="form-control form-text required" type="text" name="lastName" size="60" maxLength="128" onChange={this.handleChange.bind(this)} value={this.state.lastName} />
 
-            <label>Preferred Name </label>{requiredField}
-            <input className="form-control form-text required" type="text" name="lastName" size="60" maxLength="128" onChange={this.handleChange.bind(this)} value={this.state.preferredName} />
+            <label>Preferred Name </label>
+            <input className="form-control form-text required" type="text" name="preferredName" size="60" maxLength="128" onChange={this.handleChange.bind(this)} value={this.state.preferredName} />
 
-            <label>Date of Birth -- Calendar picker to be addeed </label>{requiredField}<br/><br/>
+            <label>Date of Birth</label>{requiredField}<br />
+            <DatePicker
+              onChange={this.updateDate}
+              value={this.state.dob}
+              maxDate={new Date()} /> <br /><br />
 
-            <label>Age </label>{requiredField} (Seemingly redundant since DOB is already requested)<br />
+            <label>Age </label>{requiredField} (Redundant since DOB is already requested?)<br />
 
             <label>Address </label>{requiredField}
             <input className="form-control form-text required" type="text" name="address" size="60" maxLength="128" onChange={this.handleChange.bind(this)} value={this.state.address} />
@@ -326,67 +216,67 @@ class RegistrationForm extends Component {
             <label>Contact Number </label>{requiredField}
             <input className="form-control form-text required" type="text" name="phone" size="60" maxLength="128" onChange={this.handleChange.bind(this)} value={this.state.phone} />
 
-            <h3 style={{color: "#c2b49a"}}>Trip Details</h3>
+            <h3 style={{ color: "#c2b49a" }}>Trip Details</h3>
             <label><input type="checkbox" name="readDescription" value={this.state.readDescription} onChange={this.handleChange.bind(this)} />
-            &nbsp;I have read the detailed description for this trip. {requiredField}</label><br />
+              &nbsp;I have read the detailed description for this trip. {requiredField}</label><br />
             <label><input type="checkbox" name="readDifficultyInfo" value={this.state.readDifficultyInfo} onChange={this.handleChange.bind(this)} />
-            &nbsp;I have read the difficulty information relevant to this trip. {requiredField}</label><br />
+              &nbsp;I have read the difficulty information relevant to this trip. {requiredField}</label><br />
             <label><input type="checkbox" name="agreeToCall" value={this.state.agreeToCall} onChange={this.handleChange.bind(this)} />
-            &nbsp;I agree to receive a call from a guide prior to the trip departure date to discuss the requirements of the trip. {requiredField}</label><br />
+              &nbsp;I agree to receive a call from a guide prior to the trip departure date to discuss the requirements of the trip. {requiredField}</label><br />
             <label><input type="checkbox" name="agreeToPack" value={this.state.agreeToPack} onChange={this.handleChange.bind(this)} />
-            &nbsp;I agree to pack in accordance with the packing list provided in the detailed trip information. {requiredField}</label><br />
+              &nbsp;I agree to pack in accordance with the packing list provided in the detailed trip information. {requiredField}</label><br />
             <label><input type="checkbox" name="agreeToHaveChecked" value={this.state.agreeToHaveChecked} onChange={this.handleChange.bind(this)} />
-            &nbsp;I agree to have a guide check my gear prior to departing for the trip (overnight trips only). {requiredField}</label><br />
+              &nbsp;I agree to have a guide check my gear prior to departing for the trip (overnight trips only). {requiredField}</label><br />
 
-            <h3 style={{color: "#c2b49a"}}>Catering Information</h3>
+            <h3 style={{ color: "#c2b49a" }}>Catering Information</h3>
 
             <label>
-              Please specify any dietary requirements {requiredField} </label><br/>
-                <textarea className="form-control" name="dietary" rows="5" onChange={this.handleChange.bind(this)} value={this.state.dietary} />
-                <span style={{fontSize: "14px"}}>Please write N/A if none</span>
-                <br/><br/>
-              Please indicate your hot drink preferences:<br />
+              Please specify any dietary requirements {requiredField} </label><br />
+            <textarea className="form-control" name="dietary" rows="5" onChange={this.handleChange.bind(this)} value={this.state.dietary} />
+            <span style={{ fontSize: "14px" }}>Please write N/A if none</span>
+            <br /><br />
+            Please indicate your hot drink preferences:<br />
 
-              I would appreciate a hot drink:<br />
-              <br/>
-              <label>With Breakfast </label> &nbsp; <label> Yes &nbsp;</label><input type="radio" name="drinkWithBreakfast" value="yes" onChange={this.handleChange.bind(this)} checked={this.state.drinkWithBreakfast === "yes"}/>
-              <label>&nbsp;&nbsp;No &nbsp;</label><input type="radio" name="drinkWithBreakfast" value="no" onChange={this.handleChange.bind(this)} checked={this.state.drinkWithBreakfast === "no"}/>
-              {this.state.drinkWithBreakfast === 'yes' ? (<section>Select your hot drink preference: Multiple options can be selected<br/><input type="checkbox" name="breakfastTea" value={this.state.breakfastTea} onChange={this.handleChange.bind(this)} />&nbsp;Tea&nbsp;<br/>
-              <input type="checkbox" name="breakfastCoffee" value={this.state.breakfastCoffee} onChange={this.handleChange.bind(this)} />&nbsp;Coffee&nbsp;<br/>
-              <input type="checkbox" name="breakfastHotChocolate" value={this.state.breakfastHotChocolate} onChange={this.handleChange.bind(this)} />&nbsp;Hot Chocolate&nbsp;<br/>
-                </section>) : (<section></section>)}
-              <br />
-              <label>With Supper </label> &nbsp; <label> Yes &nbsp;</label><input type="radio" name="drinkWithSupper" value="yes" onChange={this.handleChange.bind(this)} checked={this.state.drinkWithSupper === "yes"}/>
-              <label>&nbsp;&nbsp;No &nbsp;</label><input type="radio" name="drinkWithSupper" value="no" onChange={this.handleChange.bind(this)} checked={this.state.drinkWithSupper === "no"}/><br/>
+            I would appreciate a hot drink:<br />
+            <br />
+            <label>With Breakfast </label> &nbsp; <label> Yes &nbsp;</label><input type="radio" name="drinkWithBreakfast" value="yes" onChange={this.handleChange.bind(this)} checked={this.state.drinkWithBreakfast === "yes"} />
+            <label>&nbsp;&nbsp;No &nbsp;</label><input type="radio" name="drinkWithBreakfast" value="no" onChange={this.handleChange.bind(this)} checked={this.state.drinkWithBreakfast === "no"} />
+            {this.state.drinkWithBreakfast === 'yes' ? (<section>Select your hot drink preference: Multiple options can be selected<br /><input type="checkbox" name="breakfastTea" value={this.state.breakfastTea} onChange={this.handleChange.bind(this)} />&nbsp;Tea&nbsp;<br />
+              <input type="checkbox" name="breakfastCoffee" value={this.state.breakfastCoffee} onChange={this.handleChange.bind(this)} />&nbsp;Coffee&nbsp;<br />
+              <input type="checkbox" name="breakfastHotChocolate" value={this.state.breakfastHotChocolate} onChange={this.handleChange.bind(this)} />&nbsp;Hot Chocolate&nbsp;<br />
+            </section>) : (<section></section>)}
+            <br />
+            <label>With Supper </label> &nbsp; <label> Yes &nbsp;</label><input type="radio" name="drinkWithSupper" value="yes" onChange={this.handleChange.bind(this)} checked={this.state.drinkWithSupper === "yes"} />
+            <label>&nbsp;&nbsp;No &nbsp;</label><input type="radio" name="drinkWithSupper" value="no" onChange={this.handleChange.bind(this)} checked={this.state.drinkWithSupper === "no"} /><br />
 
-              {this.state.drinkWithSupper === 'yes' ? (<section>Select your hot drink preference: Multiple options can be selected<br/><input type="checkbox" name="supperTea" value={this.state.supperTea} onChange={this.handleChange.bind(this)} />&nbsp;Tea&nbsp;<br/>
-              <input type="checkbox" name="supperCoffee" value={this.state.supperCoffee} onChange={this.handleChange.bind(this)} />&nbsp;Coffee&nbsp;<br/>
-              <input type="checkbox" name="supperHotChocolate" value={this.state.supperHotChocolate} onChange={this.handleChange.bind(this)} />&nbsp;Hot Chocolate&nbsp;<br/></section>) : (<section></section>)}
+            {this.state.drinkWithSupper === 'yes' ? (<section>Select your hot drink preference: Multiple options can be selected<br /><input type="checkbox" name="supperTea" value={this.state.supperTea} onChange={this.handleChange.bind(this)} />&nbsp;Tea&nbsp;<br />
+              <input type="checkbox" name="supperCoffee" value={this.state.supperCoffee} onChange={this.handleChange.bind(this)} />&nbsp;Coffee&nbsp;<br />
+              <input type="checkbox" name="supperHotChocolate" value={this.state.supperHotChocolate} onChange={this.handleChange.bind(this)} />&nbsp;Hot Chocolate&nbsp;<br /></section>) : (<section></section>)}
 
 
-            <h3 style={{color: "#c2b49a"}}>Religious Background</h3>
+            <h3 style={{ color: "#c2b49a" }}>Religious Background</h3>
 
-            <label>Do you identify as “Christian”? </label> &nbsp; <label> Yes &nbsp;</label><input type="radio" name="idAsChristian" value="yes" onChange={this.handleChange.bind(this)} checked={this.state.idAsChristian === "yes"}/>
-            <label>&nbsp;&nbsp;No &nbsp;</label><input type="radio" name="idAsChristian" value="no" onChange={this.handleChange.bind(this)} checked={this.state.idAsChristian === "no"}/>
-<br/><br/>
-            {this.state.idAsChristian === 'yes'? (<section>
-            <label>What church do you currently attend? </label>
-             <input className="form-control form-text required" type="text" name="church" size="60" maxLength="128" onChange={this.handleChange.bind(this)} value={this.state.church} />
-             <label>What is the name of the non-Christian friend coming on this trip with you?</label>
-             <input className="form-control form-text required" type="text" name="nonChristianFriend" size="60" maxLength="128" onChange={this.handleChange.bind(this)} value={this.state.nonChristianFriend} />
-             </section>) :
-             (<section>
-               <label>Do you identify as belonging to another religious group? </label> &nbsp; <label> Yes &nbsp;</label><input type="radio" name="idAsAnotherReligion" value="yes" onChange={this.handleChange.bind(this)} checked={this.state.idAsAnotherReligion === "yes"}/>
-               <label>&nbsp;&nbsp; No &nbsp;</label><input type="radio" name="idAsAnotherReligion" value="no" onChange={this.handleChange.bind(this)} checked={this.state.idAsAnotherReligion === "no"}/><br />
-             </section>)}
-             <br/>{this.state.idAsAnotherReligion === 'yes' ? (<section>
-               <label>Which religion?</label><input className="form-control form-text required" type="text" name="otherReligion" size="60" maxLength="128" onChange={this.handleChange.bind(this)} value={this.state.otherReligion} />
-             <br/></section>) : (<section></section>) }
+            <label>Do you identify as “Christian”? </label> &nbsp; <label> Yes &nbsp;</label><input type="radio" name="idAsChristian" value="yes" onChange={this.handleChange.bind(this)} checked={this.state.idAsChristian === "yes"} />
+            <label>&nbsp;&nbsp;No &nbsp;</label><input type="radio" name="idAsChristian" value="no" onChange={this.handleChange.bind(this)} checked={this.state.idAsChristian === "no"} />
+            <br /><br />
+            {this.state.idAsChristian === 'yes' ? (<section>
+              <label>What church do you currently attend? </label>
+              <input className="form-control form-text required" type="text" name="church" size="60" maxLength="128" onChange={this.handleChange.bind(this)} value={this.state.church} />
+              <label>What is the name of the non-Christian friend coming on this trip with you?</label>
+              <input className="form-control form-text required" type="text" name="nonChristianFriend" size="60" maxLength="128" onChange={this.handleChange.bind(this)} value={this.state.nonChristianFriend} />
+            </section>) :
+              (<section>
+                <label>Do you identify as belonging to another religious group? </label> &nbsp; <label> Yes &nbsp;</label><input type="radio" name="idAsAnotherReligion" value="yes" onChange={this.handleChange.bind(this)} checked={this.state.idAsAnotherReligion === "yes"} />
+                <label>&nbsp;&nbsp; No &nbsp;</label><input type="radio" name="idAsAnotherReligion" value="no" onChange={this.handleChange.bind(this)} checked={this.state.idAsAnotherReligion === "no"} /><br />
+              </section>)}
+            <br />{this.state.idAsAnotherReligion === 'yes' ? (<section>
+              <label>Which religion?</label><input className="form-control form-text required" type="text" name="otherReligion" size="60" maxLength="128" onChange={this.handleChange.bind(this)} value={this.state.otherReligion} />
+              <br /></section>) : (<section></section>)}
 
             Briefly describe what “faith” means to you
             <input className="form-control form-text required" type="text" name="faithMeaning" size="60" maxLength="128" onChange={this.handleChange.bind(this)} value={this.state.faithMeaning} />
 
-            <h3 style={{color: "#c2b49a"}}>Medical Information</h3>
+            <h3 style={{ color: "#c2b49a" }}>Medical Information</h3>
             <h5>It is vital that you fill this form accurately in case of an incident that requires medical attention.</h5><br />
             <strong>Emergency contact details</strong><br /><br />
             Name<br />
@@ -407,85 +297,85 @@ class RegistrationForm extends Component {
             <input className="form-control form-text required" type="text" name="doctorsPhone" size="60" maxLength="128" onChange={this.handleChange.bind(this)} value={this.state.doctorsPhone} />
 
             <br />
-            <label>Do you have any medical conditions</label> <br/>
-            <label> Yes &nbsp;</label><input type="radio" name="medicalConditions" value="yes" onChange={this.handleChange.bind(this)} checked={this.state.medicalConditions === "yes"}/>
-            <label>&nbsp;&nbsp;No &nbsp;</label><input type="radio" name="medicalConditions" value="no" onChange={this.handleChange.bind(this)} checked={this.state.medicalConditions === "no"}/><br/>
+            <label>Do you have any medical conditions</label> <br />
+            <label> Yes &nbsp;</label><input type="radio" name="medicalConditions" value="yes" onChange={this.handleChange.bind(this)} checked={this.state.medicalConditions === "yes"} />
+            <label>&nbsp;&nbsp;No &nbsp;</label><input type="radio" name="medicalConditions" value="no" onChange={this.handleChange.bind(this)} checked={this.state.medicalConditions === "no"} /><br />
 
 
-            {this.state.medicalConditions === 'yes' ? (<section><label>Anaphylaxis </label><br/>
-            <label> Yes &nbsp;</label><input type="radio" name="anaphylaxis" value="yes" onChange={this.handleChange.bind(this)} checked={this.state.anaphylaxis === "yes"}/>
-            <label>&nbsp;&nbsp;No &nbsp;</label><input type="radio" name="anaphylaxis" value="no" onChange={this.handleChange.bind(this)} checked={this.state.anaphylaxis === "no"}/><br/>
+            {this.state.medicalConditions === 'yes' ? (<section><label>Anaphylaxis </label><br />
+              <label> Yes &nbsp;</label><input type="radio" name="anaphylaxis" value="yes" onChange={this.handleChange.bind(this)} checked={this.state.anaphylaxis === "yes"} />
+              <label>&nbsp;&nbsp;No &nbsp;</label><input type="radio" name="anaphylaxis" value="no" onChange={this.handleChange.bind(this)} checked={this.state.anaphylaxis === "no"} /><br />
 
-            <label>Epilepsy </label> <br/>
-            <label> Yes &nbsp;</label><input type="radio" name="epilepsy" value="yes" onChange={this.handleChange.bind(this)} checked={this.state.epilepsy === "yes"}/>
-            <label>&nbsp;&nbsp;No &nbsp;</label><input type="radio" name="epilepsy" value="no" onChange={this.handleChange.bind(this)} checked={this.state.epilepsy === "no"}/><br/>
+              <label>Epilepsy </label> <br />
+              <label> Yes &nbsp;</label><input type="radio" name="epilepsy" value="yes" onChange={this.handleChange.bind(this)} checked={this.state.epilepsy === "yes"} />
+              <label>&nbsp;&nbsp;No &nbsp;</label><input type="radio" name="epilepsy" value="no" onChange={this.handleChange.bind(this)} checked={this.state.epilepsy === "no"} /><br />
 
-            <label>Mental illness</label> <br/>
-            <label> Yes &nbsp;</label><input type="radio" name="mentalIllness" value="yes" onChange={this.handleChange.bind(this)} checked={this.state.mentalIllness === "yes"}/>
-            <label>&nbsp;&nbsp;No &nbsp;</label><input type="radio" name="mentalIllness" value="no" onChange={this.handleChange.bind(this)} checked={this.state.mentalIllness === "no"}/><br/>
+              <label>Mental illness</label> <br />
+              <label> Yes &nbsp;</label><input type="radio" name="mentalIllness" value="yes" onChange={this.handleChange.bind(this)} checked={this.state.mentalIllness === "yes"} />
+              <label>&nbsp;&nbsp;No &nbsp;</label><input type="radio" name="mentalIllness" value="no" onChange={this.handleChange.bind(this)} checked={this.state.mentalIllness === "no"} /><br />
 
-            <label>Asthma </label> <br/>
-            <label> Yes &nbsp;</label><input type="radio" name="asthma" value="yes" onChange={this.handleChange.bind(this)} checked={this.state.asthma === "yes"}/>
-            <label>&nbsp;&nbsp;No &nbsp;</label><input type="radio" name="asthma" value="no" onChange={this.handleChange.bind(this)} checked={this.state.asthma === "no"}/><br/>
+              <label>Asthma </label> <br />
+              <label> Yes &nbsp;</label><input type="radio" name="asthma" value="yes" onChange={this.handleChange.bind(this)} checked={this.state.asthma === "yes"} />
+              <label>&nbsp;&nbsp;No &nbsp;</label><input type="radio" name="asthma" value="no" onChange={this.handleChange.bind(this)} checked={this.state.asthma === "no"} /><br />
 
-            <label>High blood pressure</label> <br/>
-            <label> Yes &nbsp;</label><input type="radio" name="highBloodPressure" value="yes" onChange={this.handleChange.bind(this)} checked={this.state.highBloodPressure === "yes"}/>
-            <label>&nbsp;&nbsp;No &nbsp;</label><input type="radio" name="highBloodPressure" value="no" onChange={this.handleChange.bind(this)} checked={this.state.highBloodPressure === "no"}/><br/>
+              <label>High blood pressure</label> <br />
+              <label> Yes &nbsp;</label><input type="radio" name="highBloodPressure" value="yes" onChange={this.handleChange.bind(this)} checked={this.state.highBloodPressure === "yes"} />
+              <label>&nbsp;&nbsp;No &nbsp;</label><input type="radio" name="highBloodPressure" value="no" onChange={this.handleChange.bind(this)} checked={this.state.highBloodPressure === "no"} /><br />
 
-            <label>Phobias</label> <br/>
-            <label> Yes &nbsp;</label><input type="radio" name="phobias" value="yes" onChange={this.handleChange.bind(this)} checked={this.state.phobias === "yes"}/>
-            <label>&nbsp;&nbsp;No &nbsp;</label><input type="radio" name="phobias" value="no" onChange={this.handleChange.bind(this)} checked={this.state.phobias === "no"}/><br/>
+              <label>Phobias</label> <br />
+              <label> Yes &nbsp;</label><input type="radio" name="phobias" value="yes" onChange={this.handleChange.bind(this)} checked={this.state.phobias === "yes"} />
+              <label>&nbsp;&nbsp;No &nbsp;</label><input type="radio" name="phobias" value="no" onChange={this.handleChange.bind(this)} checked={this.state.phobias === "no"} /><br />
 
-            <label>Heart condition</label> <br/>
-            <label> Yes &nbsp;</label><input type="radio" name="heartCondition" value="yes" onChange={this.handleChange.bind(this)} checked={this.state.heartCondition === "yes"}/>
-            <label>&nbsp;&nbsp;No &nbsp;</label><input type="radio" name="heartCondition" value="no" onChange={this.handleChange.bind(this)} checked={this.state.heartCondition === "no"}/><br/>
+              <label>Heart condition</label> <br />
+              <label> Yes &nbsp;</label><input type="radio" name="heartCondition" value="yes" onChange={this.handleChange.bind(this)} checked={this.state.heartCondition === "yes"} />
+              <label>&nbsp;&nbsp;No &nbsp;</label><input type="radio" name="heartCondition" value="no" onChange={this.handleChange.bind(this)} checked={this.state.heartCondition === "no"} /><br />
 
-            <label>Arthritis</label> <br/>
-            <label> Yes &nbsp;</label><input type="radio" name="arthritis" value="yes" onChange={this.handleChange.bind(this)} checked={this.state.arthritis === "yes"}/>
-            <label>&nbsp;&nbsp;No &nbsp;</label><input type="radio" name="arthritis" value="no" onChange={this.handleChange.bind(this)} checked={this.state.arthritis === "no"}/><br/>
+              <label>Arthritis</label> <br />
+              <label> Yes &nbsp;</label><input type="radio" name="arthritis" value="yes" onChange={this.handleChange.bind(this)} checked={this.state.arthritis === "yes"} />
+              <label>&nbsp;&nbsp;No &nbsp;</label><input type="radio" name="arthritis" value="no" onChange={this.handleChange.bind(this)} checked={this.state.arthritis === "no"} /><br />
 
-            <label>Pregnancy</label> <br/>
-            <label> Yes &nbsp;</label><input type="radio" name="pregnancy" value="yes" onChange={this.handleChange.bind(this)} checked={this.state.pregnancy === "yes"}/>
-            <label>&nbsp;&nbsp;No &nbsp;</label><input type="radio" name="pregnancy" value="no" onChange={this.handleChange.bind(this)} checked={this.state.pregnancy === "no"}/><br/>
-            {this.state.pregnancy === 'yes' ? (<section><label>How many months? &nbsp;</label> <input type="number" name="monthsPregnant" onChange={this.handleChange.bind(this)} value={this.state.monthsPregnant} /></section>) : (<section></section>)}
+              <label>Pregnancy</label> <br />
+              <label> Yes &nbsp;</label><input type="radio" name="pregnancy" value="yes" onChange={this.handleChange.bind(this)} checked={this.state.pregnancy === "yes"} />
+              <label>&nbsp;&nbsp;No &nbsp;</label><input type="radio" name="pregnancy" value="no" onChange={this.handleChange.bind(this)} checked={this.state.pregnancy === "no"} /><br />
+              {this.state.pregnancy === 'yes' ? (<section><label>How many months? &nbsp;</label> <input type="number" name="monthsPregnant" onChange={this.handleChange.bind(this)} value={this.state.monthsPregnant} /></section>) : (<section></section>)}
 
-            <label>Diabetes</label> <br/>
-            <label> Yes &nbsp;</label><input type="radio" name="diabetes" value="yes" onChange={this.handleChange.bind(this)} checked={this.state.diabetes === "yes"}/>
-            <label>&nbsp;&nbsp;No &nbsp;</label><input type="radio" name="diabetes" value="no" onChange={this.handleChange.bind(this)} checked={this.state.diabetes === "no"}/><br/>
+              <label>Diabetes</label> <br />
+              <label> Yes &nbsp;</label><input type="radio" name="diabetes" value="yes" onChange={this.handleChange.bind(this)} checked={this.state.diabetes === "yes"} />
+              <label>&nbsp;&nbsp;No &nbsp;</label><input type="radio" name="diabetes" value="no" onChange={this.handleChange.bind(this)} checked={this.state.diabetes === "no"} /><br />
 
-            <label>Allergies</label> <br/>
-            <label> Yes &nbsp;</label><input type="radio" name="allergies" value="yes" onChange={this.handleChange.bind(this)} checked={this.state.allergies === "yes"}/>
-            <label>&nbsp;&nbsp;No &nbsp;</label><input type="radio" name="allergies" value="no" onChange={this.handleChange.bind(this)} checked={this.state.allergies === "no"}/><br/>
+              <label>Allergies</label> <br />
+              <label> Yes &nbsp;</label><input type="radio" name="allergies" value="yes" onChange={this.handleChange.bind(this)} checked={this.state.allergies === "yes"} />
+              <label>&nbsp;&nbsp;No &nbsp;</label><input type="radio" name="allergies" value="no" onChange={this.handleChange.bind(this)} checked={this.state.allergies === "no"} /><br />
 
-            <label>Other (please specify below)</label> <br/>
-            <label> Yes &nbsp;</label><input type="radio" name="otherCondition" value="yes" onChange={this.handleChange.bind(this)} checked={this.state.otherCondition === "yes"}/>
-            <label>&nbsp;&nbsp;No &nbsp;</label><input type="radio" name="otherCondition" value="no" onChange={this.handleChange.bind(this)} checked={this.state.otherCondition === "no"}/><br/>
-            <br/><label>Please give any details for your medical condition(s).</label><br/>
+              <label>Other (please specify below)</label> <br />
+              <label> Yes &nbsp;</label><input type="radio" name="otherCondition" value="yes" onChange={this.handleChange.bind(this)} checked={this.state.otherCondition === "yes"} />
+              <label>&nbsp;&nbsp;No &nbsp;</label><input type="radio" name="otherCondition" value="no" onChange={this.handleChange.bind(this)} checked={this.state.otherCondition === "no"} /><br />
+              <br /><label>Please give any details for your medical condition(s).</label><br />
               <textarea className="form-control" name="medicalConditionDetails" rows="5" onChange={this.handleChange.bind(this)} value={this.state.medicalConditionDetails} />
-</section>) : (<section></section>)}
-            <br/>
-            <label>Are you allergic to anything, including drugs or medication (redundant given previous question includes allergies?)?</label> <br/>
-            <label> Yes &nbsp;</label><input type="radio" name="allergicToAnything" value="yes" onChange={this.handleChange.bind(this)} checked={this.state.allergicToAnything === "yes"}/>
-            <label>&nbsp;&nbsp;No &nbsp;</label><input type="radio" name="allergicToAnything" value="no" onChange={this.handleChange.bind(this)} checked={this.state.allergicToAnything === "no"}/><br/>
+            </section>) : (<section></section>)}
+            <br />
+            <label>Are you allergic to anything, including drugs or medication (redundant given previous question includes allergies?)?</label> <br />
+            <label> Yes &nbsp;</label><input type="radio" name="allergicToAnything" value="yes" onChange={this.handleChange.bind(this)} checked={this.state.allergicToAnything === "yes"} />
+            <label>&nbsp;&nbsp;No &nbsp;</label><input type="radio" name="allergicToAnything" value="no" onChange={this.handleChange.bind(this)} checked={this.state.allergicToAnything === "no"} /><br />
 
             {this.state.allergicToAnything === 'yes' ? (<section><label>
-              Please provide details about your allergy</label><br/>
+              Please provide details about your allergy</label><br />
               <textarea className="form-control" name="allergyComments" rows="5" onChange={this.handleChange.bind(this)} value={this.state.allergyComments} />
-</section>) : (<section></section>)}
+            </section>) : (<section></section>)}
 
-            <br/><strong>Medication &amp; treatment</strong><br /><br/>
-            <label>Please give details of any medication (including dose) or current medical treatments.</label><br/>
-              <textarea className="form-control" name="medicationAndTreatment" rows="5" onChange={this.handleChange.bind(this)} value={this.state.medicationAndTreatment} />
+            <br /><strong>Medication &amp; treatment</strong><br /><br />
+            <label>Please give details of any medication (including dose) or current medical treatments.</label><br />
+            <textarea className="form-control" name="medicationAndTreatment" rows="5" onChange={this.handleChange.bind(this)} value={this.state.medicationAndTreatment} />
             Please also email us any other relevant information, for instance an anaphylaxis/asthma management plan.<br /><br />
 
-            <label>Do you wear glasses or contact lenses?</label> <br/>
-            <label> Yes &nbsp;</label><input type="radio" name="glasses" value="yes" onChange={this.handleChange.bind(this)} checked={this.state.glasses === "yes"}/>
-            <label>&nbsp;&nbsp;No &nbsp;</label><input type="radio" name="glasses" value="no" onChange={this.handleChange.bind(this)} checked={this.state.glasses === "no"}/><br/>
+            <label>Do you wear glasses or contact lenses?</label> <br />
+            <label> Yes &nbsp;</label><input type="radio" name="glasses" value="yes" onChange={this.handleChange.bind(this)} checked={this.state.glasses === "yes"} />
+            <label>&nbsp;&nbsp;No &nbsp;</label><input type="radio" name="glasses" value="no" onChange={this.handleChange.bind(this)} checked={this.state.glasses === "no"} /><br />
 
 
             <br /><label>Rate your swimming ability: </label>{requiredField} &nbsp;
             <select name="swimmingAbility" value={this.state.swimmingAbility} onChange={this.handleChange.bind(this)}>
-            <option value="">----</option>
+              <option value="">----</option>
               <option value="NonSwimmer">Non-swimmer</option>
               <option value="weak">Weak</option>
               <option value="reasonable">Reasonable</option>
@@ -493,131 +383,127 @@ class RegistrationForm extends Component {
             </select><br /><br />
 
             <label>
-              Please provide any additional information that would be helpful for managing your wellbeing {requiredField}</label><br/>
-              <textarea className="form-control" name="wellbeingComments" rows="5" onChange={this.handleChange.bind(this)} value={this.state.wellbeingComments} />
+              Please provide any additional information that would be helpful for managing your wellbeing {requiredField}</label><br />
+            <textarea className="form-control" name="wellbeingComments" rows="5" onChange={this.handleChange.bind(this)} value={this.state.wellbeingComments} />
 
-            <h3 style={{color: "#c2b49a"}}>Consent and Declaration</h3>
+            <h3 style={{ color: "#c2b49a" }}>Consent and Declaration</h3>
 
             <h5>Please read the following information carefully</h5>
             <br />
             <label><input type="checkbox" name="physicallyDemandingAccept" value={this.state.physicallyDemandingAccept} onChange={this.handleChange.bind(this)} />
-            &nbsp;  I am aware in signing this document for my participation in an Explore trip that certain
-            elements will be physically and/or emotionally demanding. I acknowledge that while the
-            organisers will make every reasonable effort to minimise exposure to known risks, all
-            hazards and dangers associated with these activities cannot be foreseen or may be beyond
+              &nbsp;  I am aware in signing this document for my participation in an Explore trip that certain
+              elements will be physically and/or emotionally demanding. I acknowledge that while the
+              organisers will make every reasonable effort to minimise exposure to known risks, all
+              hazards and dangers associated with these activities cannot be foreseen or may be beyond
             the control of the organisers. {requiredField}</label><br /><br />
 
             <label><input type="checkbox" name="riskAccept" value={this.state.riskAccept} onChange={this.handleChange.bind(this)} />
-            &nbsp; I agree and I understand that the general nature of the risks may include:
-            Physical and/or bodily injury including but not limited to fractures, strains, lacerations, spinal
-            injuries, partial or total paralysis, head or brain injuries, loss of limb or body part; and
+              &nbsp; I agree and I understand that the general nature of the risks may include:
+              Physical and/or bodily injury including but not limited to fractures, strains, lacerations, spinal
+              injuries, partial or total paralysis, head or brain injuries, loss of limb or body part; and
             Psychological injury, stress and/or emotional distress; and Associated trauma; and Death. {requiredField}</label><br /><br />
 
             <label><input type="checkbox" name="civilLiabilityAccept" value={this.state.civilLiabilityAccept} onChange={this.handleChange.bind(this)} />
-            &nbsp; I acknowledge that the warning contained in this document constitutes a risk warning
+              &nbsp; I acknowledge that the warning contained in this document constitutes a risk warning
             pursuant to the Civil Liability Act 2002. {requiredField}</label><br /><br />
 
             <label><input type="checkbox" name="followSafetyGuidelinesAccept" value={this.state.riskAccept} onChange={this.handleChange.bind(this)} />
-            &nbsp; I agree that should I fail to comply with any safety guidelines and/or written and/or verbal
-            instructions during the course of the trip this may compromise the safety and well being of
-            the other participants and leaders and as a consequence I may be directed to leave the
+              &nbsp; I agree that should I fail to comply with any safety guidelines and/or written and/or verbal
+              instructions during the course of the trip this may compromise the safety and well being of
+              the other participants and leaders and as a consequence I may be directed to leave the
             activity at my expense. {requiredField}</label><br /><br />
 
             <label><input type="checkbox" name="inherentRiskAccept" value={this.state.inherentRiskAccept} onChange={this.handleChange.bind(this)} />
-            &nbsp; I the undersigned person acknowledge that there is inherent risk involved in the activities
+              &nbsp; I the undersigned person acknowledge that there is inherent risk involved in the activities
             undertaken. {requiredField}</label><br /><br />
 
             <label><input type="checkbox" name="treatmentAuthorisation" value={this.state.treatmentAuthorisation} onChange={this.handleChange.bind(this)} />
-            &nbsp; I authorise the organisers to arrange immediate medical attention or treatment including
-            the administration via first aid qualified guides of medication such as paracetamol,
-            ibuprofen, antihistamines and adrenalin. I also authorise the organiser to arrange
-            emergency medical assistance if required. I accept responsibility of any expenses incurred,
+              &nbsp; I authorise the organisers to arrange immediate medical attention or treatment including
+              the administration via first aid qualified guides of medication such as paracetamol,
+              ibuprofen, antihistamines and adrenalin. I also authorise the organiser to arrange
+              emergency medical assistance if required. I accept responsibility of any expenses incurred,
             including transport. {requiredField}</label><br /><br />
 
             <label><input type="checkbox" name="lostEquipmentObligation" value={this.state.lostEquipmentObligation} onChange={this.handleChange.bind(this)} />
-            &nbsp; I acknowledge that if I lose or damage equipment that is on loan then I am expected to pay
+              &nbsp; I acknowledge that if I lose or damage equipment that is on loan then I am expected to pay
             for repairs or replacement of the equipment. {requiredField}</label><br /><br />
 
-            <label>I am over 18 years of age.</label>
-            <label> Yes &nbsp;</label><input type="radio" name="over18" value="yes" onChange={this.handleChange.bind(this)} checked={this.state.over18 === "yes"}/>
-            <label>&nbsp;&nbsp;No &nbsp;</label><input type="radio" name="over18" value="no" onChange={this.handleChange.bind(this)} checked={this.state.over18 === "no"}/><br/>
+            <label>I am over 18 years of age.</label><br />
+            <label> Yes &nbsp;</label><input type="radio" name="over18" value="yes" onChange={this.handleChange.bind(this)} checked={this.state.over18 === "yes"} />
+            <label>&nbsp;&nbsp;No &nbsp;</label><input type="radio" name="over18" value="no" onChange={this.handleChange.bind(this)} checked={this.state.over18 === "no"} /><br />
 
 
             {this.state.over18 === 'yes' ? (<section>
-              I, [full name], declare that the information I have provided in this registration form about myself is
-              true and correct.
-              Signature:
+              I, [full name], declare that the information I have provided in this registration form about myself is true and correct.<br />
+              Signature:<br />
               Date:
               </section>) : (<section></section>)}
 
-              {this.state.over18 === 'no' ? (<section>
-                To be completed by the participant:
-                I, [full name], declare that the information I have provided in this registration form about myself is
-                true and correct.
-                Signature:
-                Date:
-                To be completed by the participant’s parent/guardian:
-                I, [full name], the parent/guardian of [full name], declare that the information provided in this
-                registration form about my child is true and correct.
-                I have read this registration form, the detailed trip description and the relevant difficulty information
-                and I give permission for my child to participate in this trip.
-                Signature:
-                Date:
+            {this.state.over18 === 'no' ? (<section>
+              To be completed by the participant:<br />
+              I, [full name], declare that the information I have provided in this registration form about myself is true and correct.<br />
+              Signature:<br />
+              Date:
+              <br />
+              <br />
+              To be completed by the participant’s parent/guardian:<br />
+              I, [full name], the parent/guardian of [full name], declare that the information provided in this registration form about my child is true and correct. <br />
+              I have read this registration form, the detailed trip description and the relevant difficulty information and I give permission for my child to participate in this trip.<br />
+              Signature:<br />
+              Date:
               </section>) : (<section></section>)}
 
 
             <br />
-            <input type="submit" value="Register" className="btn btn-primary"/>
+            <input type="submit" value="Register" className="btn btn-primary" />
 
-            <br/><br/>
-            <div id="errorMessage" style={{whiteSpace: "pre-line", fontWeight: "bold"}}>
+            <br /><br />
+            <div id="errorMessage" style={{ whiteSpace: "pre-line", fontWeight: "bold" }}>
               {this.state.formErrorMessage}
             </div>
           </form>
         </section>
       );
     }
-    else if (!this.state.formValid && !registrationsOpen){
+    else if (!this.state.formValid && !registrationsOpen) {
       registrationForm = (
         <section>
-          <p>{eventDates}<br/>
-          {eventLocation}</p>
+          <p>{eventDates}<br />
+            {eventLocation}</p>
 
-          <h3 style={{color: "#c2b49a"}}>Registrations for --- have now closed.</h3>
+          <h3 style={{ color: "#c2b49a" }}>Registrations for --- have now closed.</h3>
         </section>
-    )
+      )
     }
-    else
-    {
+    else {
       registrationForm = <div></div>
     }
 
     var formSubmitted;
-    if(this.state.formSubmitted)
-    {
-      formSubmitted = ( <div>
-                          {this.state.paymentType === "paypal" ?
-                            <PaypalConfirmation /> :
-                            <ChequeDDConfirmation totalCost={this.state.totalCost} surname={this.state.lastName}/>}
+    if (this.state.formSubmitted) {
+      formSubmitted = (<div>
+        {this.state.paymentType === "paypal" ?
+          <PaypalConfirmation /> :
+          <ChequeDDConfirmation totalCost={this.state.totalCost} surname={this.state.lastName} />}
 
-                      <br /><br />
-                      <input type="button" onClick={this.resetRegistrationForm} value="Register Somebody Else?" className="btn btn-primary"/>
-                      </div>);
+        <br /><br />
+        <input type="button" onClick={this.resetRegistrationForm} value="Register Somebody Else?" className="btn btn-primary" />
+      </div>);
     }
     else {
       formSubmitted = "";
     }
 
     return (
-        <section>
-          <br />
-          <section className="container">
-            {formSubmitted}
-            {registrationForm}
+      <section>
+        <br />
+        <section className="container">
+          {formSubmitted}
+          {registrationForm}
 
 
-          </section>
         </section>
+      </section>
     );
   }
 }

@@ -29,6 +29,8 @@ import './assets/css/fontyourface/font.css';
 
 import './assets/nestor/css/color/green.css';
 
+import './assets/css/trippopup.css';
+
 class App extends Component {
   render() {
     return (

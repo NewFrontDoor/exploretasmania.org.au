@@ -6,7 +6,7 @@ import Navigation from './Navigation';
 import OtherPageContent from './OtherPageContent';
 
 import ContactUs from './pages/ContactUs';
-import Events from './pages/Events';
+import Trips from './pages/Trips';
 import SupportUs from './pages/SupportUs';
 import RegistrationForm from './pages/RegistrationForm';
 import Guides from './pages/Guides';
@@ -18,7 +18,7 @@ class OtherPageWrapper extends Component {
       <section>
         <Switch>
           <Route exact path="/ContactUs" component={ContactUs} />
-          <Route exact path="/Events" component={Events} />
+          <Route exact path="/Events" component={Trips} />
           <Route exact path="/SupportUs" component={SupportUs} />
           <Route exact path="/Register" component={RegistrationForm} />
           <Route exact path="/Guides" component={Guides} />
