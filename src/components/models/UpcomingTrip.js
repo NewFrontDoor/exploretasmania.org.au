@@ -26,7 +26,8 @@ class UpcomingTrip extends Component {
                                 <strong>Length:</strong> {this.props.length}
                             </li>
                         </ul>
-
+                        <br />
+                        <em>This is an adult trip – you must be over 18 to attend.</em>
                     </div>
                 </section>}
 

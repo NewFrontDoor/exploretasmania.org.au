@@ -43,6 +43,10 @@ class LakeRhonaTrip extends Component {
                             <li>
                                 <strong>Packing list:</strong> Find out what to bring <a href={PackingList} target="_blank">here</a>.
                             </li>
+                            <br />
+                            <li>
+                                <em>This is an adult trip – you must be over 18 to attend.</em>
+                            </li>
                         </ul>
                         <br />
                         <br />
