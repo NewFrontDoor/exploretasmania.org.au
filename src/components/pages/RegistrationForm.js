@@ -7,23 +7,15 @@ import { escape } from 'he'
 
 import DatePicker from 'react-date-picker'
 
-//import {postToWebform} from './postToAPI.js';
+import { postToWebform } from '../../utils/postToAPI.js';
 
-const registrationsOpen = true;
-const earlyBirdCutoff = new Date('2018-08-13');
-const earlyBirdValid = earlyBirdCutoff.getTime() > Date.now();
+const registrationCloseDate = new Date('2020-12-30');
+const registrationsOpen = registrationCloseDate.getTime() > Date.now();
 
-const eventDates = "Event dates from and to";
-const eventLocation = "Event Location";
+const eventDates = "13-16 December 2018";
+const eventLocation = "Lake Rhona";
+const dateFormatOptions = { year: 'numeric', month: 'numeric', day: 'numeric' };
 
-//price details from PWWA
-const fullWeekendEarlyPrice = 130;
-const fullWeekendPrice = 140;
-const dayPrice = 20;
-const breakfastCost = 9;
-const lunchCost = 16;
-const dinnerCost = 19
-const currentFullCost = earlyBirdValid ? fullWeekendEarlyPrice : fullWeekendPrice;
 
 class RegistrationForm extends Component {
 
@@ -33,32 +25,71 @@ class RegistrationForm extends Component {
       firstName: "",
       lastName: "",
       preferredName: "",
+      dob: null,
+      address: "",
       email: "",
       phone: "",
-      address: "",
-      suburb: "",
-      state: "",
-      dob: null,
-      postcode: "",
+      readDescription: false,
+      readDifficultyInfo: false,
+      agreeToCall: false,
+      agreeToPack: false,
+      agreeToHaveChecked: false,
+      dietaryRequirements: "",
+      drinkWithBreakfast: "",
+      breakfastTea: false,
+      breakfastCoffee: false,
+      breakfastHotChocolate: false,
+      drinkWithSupper: "",
+      supperTea: false,
+      supperCoffee: false,
+      supperHotChocolate: false,
+      idAsChristian: "",
       church: "",
-      dietary: "",
-      comments: "",
+      nonChristianFriend: "",
+      idAsAnotherReligion: "",
+      otherReligion: "",
+      faithMeaning: "",
+      contactName: "",
+      contactEmail: "",
+      contactRelationship: "",
+      contactPhone: "",
+      contactPhoneAlternate: "",
+      doctorsName: "",
+      doctorsPhone: "",
+      medicalConditions: "",
+      anaphylaxis: "",
+      epilepsy: "",
+      mentalIllness: "",
+      asthma: "",
+      highBloodPressure: "",
+      phobias: "",
+      heartCondition: "",
+      arthritis: "",
+      pregnancy: "",
+      monthsPregnant: 0,
+      diabetes: "",
+      allergies: "",
+      otherCondition: "",
+      medicalConditionDetails: "",
+      allergicToAnything: "",
+      allergyComments: "",
+      medicationAndTreatment: "",
+      glasses: "",
+      swimmingAbility: "",
+      wellbeingComments: "",
+      physicallyDemandingAccept: false,
+      riskAccept: false,
+      civilLiabilityAccept: false,
+      followSafetyGuidelinesAccept: false,
+      inherentRiskAccept: false,
+      treatmentAuthorisation: false,
+      lostEquipmentObligation: false,
+      over18: null,
+      fullNameDeclaration: "[Your Full Name]",
+      declarationDate: null,
       formErrorMessage: "",
       formValid: false,
-      formSubmitted: false,
-      registrationType: "full",
-      paymentType: "cheque",
-      totalCost: 0,
-      friday: false,
-      fridayDinner: false,
-      saturday: false,
-      saturdayBreakfast: false,
-      saturdayLunch: false,
-      saturdayDinner: false,
-      sundayBreakfast: false,
-      sundayLunch: false,
-      weekendDinnerAttendance: 'yes',
-      nonChristianFriend: ""
+      formSubmitted: false
     }
 
     this.resetRegistrationForm = this.resetRegistrationForm.bind(this);
@@ -69,17 +100,72 @@ class RegistrationForm extends Component {
     this.setState({
       firstName: "",
       lastName: "",
+      preferredName: "",
+      dob: null,
+      address: "",
       email: "",
       phone: "",
-      address: "",
-      postcode: "",
+      readDescription: false,
+      readDifficultyInfo: false,
+      agreeToCall: false,
+      agreeToPack: false,
+      agreeToHaveChecked: false,
+      dietaryRequirements: "",
+      drinkWithBreakfast: "",
+      breakfastTea: false,
+      breakfastCoffee: false,
+      breakfastHotChocolate: false,
+      drinkWithSupper: "",
+      supperTea: false,
+      supperCoffee: false,
+      supperHotChocolate: false,
+      idAsChristian: "",
       church: "",
-      dietary: "",
-      comments: "",
+      nonChristianFriend: "",
+      idAsAnotherReligion: "",
+      otherReligion: "",
+      faithMeaning: "",
+      contactName: "",
+      contactEmail: "",
+      contactRelationship: "",
+      contactPhone: "",
+      contactPhoneAlternate: "",
+      doctorsName: "",
+      doctorsPhone: "",
+      medicalConditions: "",
+      anaphylaxis: "",
+      epilepsy: "",
+      mentalIllness: "",
+      asthma: "",
+      highBloodPressure: "",
+      phobias: "",
+      heartCondition: "",
+      arthritis: "",
+      pregnancy: "",
+      monthsPregnant: 0,
+      diabetes: "",
+      allergies: "",
+      otherCondition: "",
+      medicalConditionDetails: "",
+      allergicToAnything: "",
+      allergyComments: "",
+      medicationAndTreatment: "",
+      glasses: "",
+      swimmingAbility: "",
+      wellbeingComments: "",
+      physicallyDemandingAccept: false,
+      riskAccept: false,
+      civilLiabilityAccept: false,
+      followSafetyGuidelinesAccept: false,
+      inherentRiskAccept: false,
+      treatmentAuthorisation: false,
+      lostEquipmentObligation: false,
+      over18: null,
+      fullNameDeclaration: "[Your Full Name]",
+      declarationDate: null,
       formErrorMessage: "",
       formValid: false,
-      formSubmitted: false,
-      nonChristianFriend: ""
+      formSubmitted: false
     })
   }
 
@@ -89,40 +175,145 @@ class RegistrationForm extends Component {
     var change = {};
     change[e.target.name] = value;
     this.setState(change);
-    console.log(this.state)
   }
 
-  updateDate = date => this.setState({ dob: date })
+  updateDOB = date => this.setState({ dob: date })
+  updateDeclarationDate = date => this.setState({ declarationDate: date })
 
   handleSubmit(e) {
     e.preventDefault();
+    console.log(this.state)
     var errorMessage = "";
-    let totalCost = 0;
 
+    /*Contact Information validation*/
     if (validator.isEmpty(this.state.firstName)) {
       errorMessage += "Please enter your first name.\n";
     }
     if (validator.isEmpty(this.state.lastName)) {
       errorMessage += "Please enter your last name.\n";
     }
-    if (validator.isEmpty(this.state.email) || !validator.isEmail(this.state.email)) {
-      errorMessage += "Please enter a valid email address.\n";
-    }
     if (this.state.dob === null) {
       errorMessage += "Please enter your date of birth.\n";
-    }
-    if (validator.isEmpty(this.state.phone)) {
-      errorMessage += "Please enter a phone number.\n";
     }
     if (validator.isEmpty(this.state.address)) {
       errorMessage += "Please enter your address.\n";
     }
-    if (validator.isEmpty(this.state.dietary)) {
-      errorMessage += "Please enter your dietary requirements.\n";
+    if (validator.isEmpty(this.state.email) || !validator.isEmail(this.state.email)) {
+      errorMessage += "Please enter a valid email address.\n";
     }
-    if (validator.isEmpty(this.state.comments)) {
-      errorMessage += "Please enter any relevant comments you may have\n";
+    if (validator.isEmpty(this.state.phone)) {
+      errorMessage += "Please enter your contact number.\n";
     }
+
+    /*Trip Details Validation*/
+    if (this.state.readDescription !== true) {
+      errorMessage += "Please confirm that you have read the detailed description for this trip.\n";
+    }
+    if (this.state.readDifficultyInfo !== true) {
+      errorMessage += "Please confirm that you have read the relevant difficulty information for this trip.\n";
+    }
+    if (this.state.agreeToCall !== true) {
+      errorMessage += "Please confirm that you agree to receive a phone call from a guide to discuss the details of this trip.\n";
+    }
+    if (this.state.agreeToPack !== true) {
+      errorMessage += "Please confirm that you agree to pack in accordance with the packing list provided in the detailed trip information.\n";
+    }
+    if (this.state.agreeToHaveChecked !== true) {
+      errorMessage += "Please confirm that you agree to have a guide check your gear prior to departing for the trip .\n";
+    }
+
+    /* Catering information validation*/
+    if (validator.isEmpty(this.state.dietaryRequirements)) {
+      errorMessage += "Please specify whether you have any dietary requirements.\n";
+    }
+
+    /* Medical information validation */
+    if (validator.isEmpty(this.state.contactName)) {
+      errorMessage += "Please enter the name of your emergency contact.\n";
+    }
+    if (validator.isEmpty(this.state.contactRelationship)) {
+      errorMessage += "Please enter your relationship to your emergency contact.\n";
+    }
+    if (validator.isEmpty(this.state.contactPhone)) {
+      errorMessage += "Please enter the primary contact number for your emergency contact.\n";
+    }
+    if (validator.isEmpty(this.state.contactEmail) || !validator.isEmail(this.state.contactEmail)) {
+      errorMessage += "Please enter a valid email address for your emergency contact.\n";
+    }
+
+    if (validator.isEmpty(this.state.doctorsName)) {
+      errorMessage += "Please enter the name of your doctor.\n";
+    }
+    if (validator.isEmpty(this.state.doctorsPhone)) {
+      errorMessage += "Please enter the contact number for your doctor.\n";
+    }
+    if (this.state.medicalConditions === null) {
+      errorMessage += "Please state whether or not you have any medical conditions.\n";
+    }
+    if (this.state.medicalConditions === "yes" && validator.isEmpty(this.state.medicalConditionDetails)) {
+      errorMessage += "Please enter specific details for your medical condition(s).\n";
+    }
+    if (this.state.allergicToAnything === null) {
+      errorMessage += "Please state whether or not you have any allergies.\n";
+    }
+    if (this.state.allergicToAnything === "yes" && validator.isEmpty(this.state.allergyComments)) {
+      errorMessage += "Please enter specific details for each of your allergies.\n";
+    }
+    if (validator.isEmpty(this.state.medicationAndTreatment)) {
+      errorMessage += "Please enter the details of your medication or medical treatment requirements.\n";
+    }
+
+    if (this.state.glasses === null) {
+      errorMessage += "Please state whether or not you wear glasses or contact lenses.\n";
+    }
+    if (validator.isEmpty(this.state.swimmingAbility)) {
+      errorMessage += "Please rate the level of your swimming ability.\n";
+    }
+    if (validator.isEmpty(this.state.wellbeingComments)) {
+      errorMessage += "Please provide any additional information that would be helpful for managing your wellbeing.\n";
+    }
+
+
+    /* Consent and Declaration */
+    if (!this.state.physicallyDemandingAccept) {
+      errorMessage += "Please read and confirm that you are giving consent to the above statement regarding unforseen risks, hazards and dangers that may arise for this trip.\n";
+    }
+    if (!this.state.riskAccept) {
+      errorMessage += "Please read and confirm that you are giving consent to the above statement regarding the nature of risks that may arise for this trip.\n";
+    }
+    if (!this.state.civilLiabilityAccept) {
+      errorMessage += "Please confirm that you acknowledge that the warning contained in this document constitutes a risk warning pursuant to the Civil Liability Act 2002.\n";
+    }
+    if (!this.state.followSafetyGuidelinesAccept) {
+      errorMessage += "Please confirm that you acknowledge that if you fail to follow safety instructions that you may be directed to leave the activity at your expense.\n";
+    }
+    if (!this.state.inherentRiskAccept) {
+      errorMessage += "Please confirm that you acknowledge that there is inherent risk involved in the activities undertaken. \n";
+    }
+    if (!this.state.treatmentAuthorisation) {
+      errorMessage += "Please confirm your authorisation for organisers to provide you with immediate medical aid and that you accept the responsibility to cover any costs incurred. \n";
+    }
+    if (!this.state.lostEquipmentObligation) {
+      errorMessage += "Please confirm that you acknowledge that if you lose or damage equipment that is on loan then you will be expected to pay for repairs or replacement of the equipment.  \n";
+    }
+
+
+    if (this.state.over18 === null) {
+      errorMessage += "Please confirm that you are over 18 years of age.\n";
+    }
+
+    if (this.state.over18 === "yes") {
+      if (this.state.fullNameDeclaration === "[Your Full Name]" || validator.isEmpty(this.state.fullNameDeclaration)) {
+        errorMessage += "Please enter your full name in the declaration above.\n";
+      }
+      if (this.state.declarationDate === null) {
+        errorMessage += "Please select the date of your declaration and consent to the above information given.\n";
+      }
+    }
+    if (this.state.over18 === "no") {
+      errorMessage += "This is an adult trip – you must be over 18 to attend.\n";
+    }
+
 
 
     if (errorMessage !== "") {
@@ -130,47 +321,120 @@ class RegistrationForm extends Component {
       return false;
     }
     else {
-      if (this.state.registrationType === "day") {
-        //sum total cost
-        if (this.state.friday) { totalCost += dayPrice; }
-        if (this.state.saturday) { totalCost += dayPrice; }
-        if (this.state.sunday) { totalCost += dayPrice; }
-
-        if (this.state.fridayDinner) { totalCost += dinnerCost }
-        if (this.state.saturdayBreakfast) { totalCost += breakfastCost }
-        if (this.state.saturdayLunch) { totalCost += lunchCost }
-        if (this.state.saturdayDinner) { totalCost += dinnerCost }
-        if (this.state.sundayBreakfast) { totalCost += breakfastCost }
-        if (this.state.sundayLunch) { totalCost += lunchCost }
-
-
-      }
-      else {
-        totalCost = currentFullCost;
-      }
-
-      this.setState({ totalCost: totalCost });
       this.setState({ formValid: true });
       console.log(this.state);
       /*handle posting to drupal and show success message*/
       var form = new FormData();
-      form.append("webform", "webform-uuid");
+      form.append("webform", "0209a95b-71f6-4482-ae80-a74c3d0e431c");
       form.append("submission[data][1][values][0]", escape(this.state.firstName));
       form.append("submission[data][2][values][0]", escape(this.state.lastName));
-      form.append("submission[data][3][values][0]", escape(this.state.email));
-      form.append("submission[data][4][values][0]", escape(this.state.phone));
+      form.append("submission[data][3][values][0]", escape(this.state.preferredName));
+      form.append("submission[data][62][values][0]", this.state.dob.toLocaleDateString("en-AU", dateFormatOptions));
       form.append("submission[data][5][values][0]", escape(this.state.address));
-      form.append("submission[data][6][values][0]", escape(this.state.suburb));
-      form.append("submission[data][7][values][0]", escape(this.state.state));
+      form.append("submission[data][6][values][0]", escape(this.state.email));
+      form.append("submission[data][7][values][0]", escape(this.state.phone));
+      form.append("submission[data][8][values][0]", this.state.readDescription);
+      form.append("submission[data][9][values][0]", this.state.readDifficultyInfo);
+      form.append("submission[data][10][values][0]", this.state.agreeToCall);
+      form.append("submission[data][11][values][0]", this.state.agreeToPack);
+      form.append("submission[data][12][values][0]", this.state.agreeToHaveChecked);
+      form.append("submission[data][13][values][0]", escape(this.state.dietaryRequirements));
+      form.append("submission[data][14][values][0]", this.state.drinkWithBreakfast);
 
-      form.append("submission[data][8][values][0]", escape(this.state.postcode));
+      if (this.state.drinkWithBreakfast === "yes") {
+        let i = 0;
+        if (this.state.breakfastTea) {
+          form.append("submission[data][15][values][" + i + "0]", 'breakfastTea');
+          i++;
+        }
+        if (this.state.breakfastCoffee) {
+          form.append("submission[data][15][values][" + i + "0]", 'breakfastCoffee');
+          i++;
+        }
+        if (this.state.breakfastHotChocolate) {
+          form.append("submission[data][15][values][" + i + "0]", 'breakfastHotChocolate');
+          i++;
+        }
+      }
+
+      form.append("submission[data][16][values][0]", escape(this.state.drinkWithSupper));
+
+      if (this.state.drinkWithSupper === "yes") {
+        let i = 0;
+        if (this.state.supperTea) {
+          form.append("submission[data][17][values][" + i + "0]", 'supperTea');
+          i++;
+        }
+        if (this.state.supperCoffee) {
+          form.append("submission[data][17][values][" + i + "0]", 'supperCoffee');
+          i++;
+        }
+        if (this.state.supperHotChocolate) {
+          form.append("submission[data][17][values][" + i + "0]", 'supperHotChocolate');
+          i++;
+        }
+      }
+
+      form.append("submission[data][18][values][0]", this.state.idAsChristian);
+      form.append("submission[data][19][values][0]", escape(this.state.church));
+      form.append("submission[data][20][values][0]", escape(this.state.nonChristianFriend));
+      form.append("submission[data][21][values][0]", this.state.idAsAnotherReligion);
+      form.append("submission[data][22][values][0]", escape(this.state.otherReligion));
+      form.append("submission[data][23][values][0]", escape(this.state.faithMeaning));
+      form.append("submission[data][24][values][0]", escape(this.state.contactName));
+      form.append("submission[data][25][values][0]", escape(this.state.contactRelationship));
+      form.append("submission[data][26][values][0]", escape(this.state.contactPhone));
+      form.append("submission[data][27][values][0]", escape(this.state.contactPhoneAlternate));
+      form.append("submission[data][28][values][0]", escape(this.state.contactEmail));
+      form.append("submission[data][29][values][0]", escape(this.state.doctorsName));
+      form.append("submission[data][30][values][0]", escape(this.state.doctorsPhone));
+      form.append("submission[data][31][values][0]", escape(this.state.medicalConditions));
+
+      if (this.state.medicalConditions === "yes") {
+        form.append("submission[data][32][values][0]", this.state.anaphylaxis);
+        form.append("submission[data][33][values][0]", this.state.epilepsy);
+        form.append("submission[data][34][values][0]", this.state.mentalIllness);
+        form.append("submission[data][35][values][0]", this.state.asthma);
+        form.append("submission[data][36][values][0]", this.state.highBloodPressure);
+        form.append("submission[data][37][values][0]", this.state.phobias);
+        form.append("submission[data][38][values][0]", this.state.heartCondition);
+        form.append("submission[data][39][values][0]", this.state.arthritis);
+        form.append("submission[data][40][values][0]", this.state.pregnancy);
+        form.append("submission[data][61][values][0]", this.state.monthsPregnant);
+        form.append("submission[data][41][values][0]", this.state.diabetes);
+        form.append("submission[data][42][values][0]", this.state.allergies);
+        form.append("submission[data][43][values][0]", this.state.otherCondition);
+        form.append("submission[data][44][values][0]", this.state.medicalConditionDetails);
+      }
+
+      form.append("submission[data][45][values][0]", escape(this.state.allergicToAnything));
+      if (this.state.allergicToAnything === "yes") {
+        form.append("submission[data][46][values][0]", escape(this.state.allergyComments));
+      }
+
+      form.append("submission[data][47][values][0]", escape(this.state.medicationAndTreatment));
+      form.append("submission[data][48][values][0]", escape(this.state.glasses));
+      form.append("submission[data][49][values][0]", escape(this.state.swimmingAbility));
+      form.append("submission[data][50][values][0]", escape(this.state.wellbeingComments));
+
+      form.append("submission[data][51][values][0]", this.state.physicallyDemandingAccept);
+      form.append("submission[data][52][values][0]", this.state.riskAccept);
+      form.append("submission[data][53][values][0]", this.state.civilLiabilityAccept);
+      form.append("submission[data][54][values][0]", this.state.followSafetyGuidelinesAccept);
+      form.append("submission[data][55][values][0]", this.state.inherentRiskAccept);
+      form.append("submission[data][56][values][0]", this.state.treatmentAuthorisation);
+      form.append("submission[data][57][values][0]", this.state.lostEquipmentObligation);
+
+      form.append("submission[data][58][values][0]", this.state.over18);
+      form.append("submission[data][59][values][0]", escape(this.state.fullNameDeclaration));
+      form.append("submission[data][63][values][0]", this.state.declarationDate.toLocaleDateString("en-AU", dateFormatOptions));
 
 
-      /*var that = this;
-      postToWebform(form, function(data){
-        that.setState({submissionID:data.sid})
-        that.setState({formSubmitted:true})
-      })*/
+      var that = this;
+      postToWebform(form, function (data) {
+        that.setState({ submissionID: data.sid })
+        that.setState({ formSubmitted: true })
+      })
     }
 
   }
@@ -201,11 +465,9 @@ class RegistrationForm extends Component {
 
             <label>Date of Birth</label>{requiredField}<br />
             <DatePicker
-              onChange={this.updateDate}
+              onChange={this.updateDOB}
               value={this.state.dob}
               maxDate={new Date()} /> <br /><br />
-
-            <label>Age </label>{requiredField} (Redundant since DOB is already requested?)<br />
 
             <label>Address </label>{requiredField}
             <input className="form-control form-text required" type="text" name="address" size="60" maxLength="128" onChange={this.handleChange.bind(this)} value={this.state.address} />
@@ -232,7 +494,7 @@ class RegistrationForm extends Component {
 
             <label>
               Please specify any dietary requirements {requiredField} </label><br />
-            <textarea className="form-control" name="dietary" rows="5" onChange={this.handleChange.bind(this)} value={this.state.dietary} />
+            <textarea className="form-control" name="dietaryRequirements" rows="5" onChange={this.handleChange.bind(this)} value={this.state.dietary} />
             <span style={{ fontSize: "14px" }}>Please write N/A if none</span>
             <br /><br />
             Please indicate your hot drink preferences:<br />
@@ -273,31 +535,31 @@ class RegistrationForm extends Component {
               <label>Which religion?</label><input className="form-control form-text required" type="text" name="otherReligion" size="60" maxLength="128" onChange={this.handleChange.bind(this)} value={this.state.otherReligion} />
               <br /></section>) : (<section></section>)}
 
-            Briefly describe what “faith” means to you
+            Briefly describe what “faith” means to you (optional)
             <input className="form-control form-text required" type="text" name="faithMeaning" size="60" maxLength="128" onChange={this.handleChange.bind(this)} value={this.state.faithMeaning} />
 
             <h3 style={{ color: "#c2b49a" }}>Medical Information</h3>
             <h5>It is vital that you fill this form accurately in case of an incident that requires medical attention.</h5><br />
             <strong>Emergency contact details</strong><br /><br />
-            Name<br />
+            Name{requiredField}<br />
             <input className="form-control form-text required" type="text" name="contactName" size="60" maxLength="128" onChange={this.handleChange.bind(this)} value={this.state.contactName} />
-            Relationship to you (eg. Wife, mother)
+            Relationship to you (eg. Wife, mother){requiredField}
             <input className="form-control form-text required" type="text" name="contactRelationship" size="60" maxLength="128" onChange={this.handleChange.bind(this)} value={this.state.contactRelationship} />
-            Phone number<br />
+            Phone number{requiredField}<br />
             <input className="form-control form-text required" type="text" name="contactPhone" size="60" maxLength="128" onChange={this.handleChange.bind(this)} value={this.state.contactPhone} />
             Alternative phone number<br />
             <input className="form-control form-text required" type="text" name="contactPhoneAlternate" size="60" maxLength="128" onChange={this.handleChange.bind(this)} value={this.state.contactPhoneAlternate} />
-            Email for emergency contact<br />
+            Email for emergency contact{requiredField}<br />
             <input className="form-control form-text required" type="text" name="contactEmail" size="60" maxLength="128" onChange={this.handleChange.bind(this)} value={this.state.contactEmail} />
             <br />
             <strong>Doctor’s details</strong><br /><br />
-            Doctors name:<br />
+            Doctors name: {requiredField}<br />
             <input className="form-control form-text required" type="text" name="doctorsName" size="60" maxLength="128" onChange={this.handleChange.bind(this)} value={this.state.doctorsName} />
-            Doctors phone number:<br />
+            Doctors phone number: {requiredField}<br />
             <input className="form-control form-text required" type="text" name="doctorsPhone" size="60" maxLength="128" onChange={this.handleChange.bind(this)} value={this.state.doctorsPhone} />
 
             <br />
-            <label>Do you have any medical conditions</label> <br />
+            <label>Do you have any medical conditions {requiredField}</label> <br />
             <label> Yes &nbsp;</label><input type="radio" name="medicalConditions" value="yes" onChange={this.handleChange.bind(this)} checked={this.state.medicalConditions === "yes"} />
             <label>&nbsp;&nbsp;No &nbsp;</label><input type="radio" name="medicalConditions" value="no" onChange={this.handleChange.bind(this)} checked={this.state.medicalConditions === "no"} /><br />
 
@@ -350,25 +612,27 @@ class RegistrationForm extends Component {
               <label>Other (please specify below)</label> <br />
               <label> Yes &nbsp;</label><input type="radio" name="otherCondition" value="yes" onChange={this.handleChange.bind(this)} checked={this.state.otherCondition === "yes"} />
               <label>&nbsp;&nbsp;No &nbsp;</label><input type="radio" name="otherCondition" value="no" onChange={this.handleChange.bind(this)} checked={this.state.otherCondition === "no"} /><br />
-              <br /><label>Please give any details for your medical condition(s).</label><br />
+              <br /><label>Please give any relevant details for your medical condition(s).</label> {requiredField}<br />
               <textarea className="form-control" name="medicalConditionDetails" rows="5" onChange={this.handleChange.bind(this)} value={this.state.medicalConditionDetails} />
             </section>) : (<section></section>)}
             <br />
-            <label>Are you allergic to anything, including drugs or medication (redundant given previous question includes allergies?)?</label> <br />
+            <label>Are you allergic to anything, including drugs or medication? {requiredField}</label> <br />
             <label> Yes &nbsp;</label><input type="radio" name="allergicToAnything" value="yes" onChange={this.handleChange.bind(this)} checked={this.state.allergicToAnything === "yes"} />
             <label>&nbsp;&nbsp;No &nbsp;</label><input type="radio" name="allergicToAnything" value="no" onChange={this.handleChange.bind(this)} checked={this.state.allergicToAnything === "no"} /><br />
 
             {this.state.allergicToAnything === 'yes' ? (<section><label>
-              Please provide details about your allergy</label><br />
+              Please provide details about your allergy</label> {requiredField}<br />
               <textarea className="form-control" name="allergyComments" rows="5" onChange={this.handleChange.bind(this)} value={this.state.allergyComments} />
             </section>) : (<section></section>)}
 
             <br /><strong>Medication &amp; treatment</strong><br /><br />
-            <label>Please give details of any medication (including dose) or current medical treatments.</label><br />
+            <label>Please give details of any medication (including dose) or current medical treatments. {requiredField}</label><br />
+            Please also email us any other relevant information, for instance an anaphylaxis/asthma management plan. <br />
             <textarea className="form-control" name="medicationAndTreatment" rows="5" onChange={this.handleChange.bind(this)} value={this.state.medicationAndTreatment} />
-            Please also email us any other relevant information, for instance an anaphylaxis/asthma management plan.<br /><br />
+            <span style={{ fontSize: "14px" }}>Please write N/A if none</span><br /><br />
 
-            <label>Do you wear glasses or contact lenses?</label> <br />
+
+            <label>Do you wear glasses or contact lenses? {requiredField}</label> <br />
             <label> Yes &nbsp;</label><input type="radio" name="glasses" value="yes" onChange={this.handleChange.bind(this)} checked={this.state.glasses === "yes"} />
             <label>&nbsp;&nbsp;No &nbsp;</label><input type="radio" name="glasses" value="no" onChange={this.handleChange.bind(this)} checked={this.state.glasses === "no"} /><br />
 
@@ -376,7 +640,7 @@ class RegistrationForm extends Component {
             <br /><label>Rate your swimming ability: </label>{requiredField} &nbsp;
             <select name="swimmingAbility" value={this.state.swimmingAbility} onChange={this.handleChange.bind(this)}>
               <option value="">----</option>
-              <option value="NonSwimmer">Non-swimmer</option>
+              <option value="nonSwimmer">Non-swimmer</option>
               <option value="weak">Weak</option>
               <option value="reasonable">Reasonable</option>
               <option value="strong">Strong</option>
@@ -385,6 +649,7 @@ class RegistrationForm extends Component {
             <label>
               Please provide any additional information that would be helpful for managing your wellbeing {requiredField}</label><br />
             <textarea className="form-control" name="wellbeingComments" rows="5" onChange={this.handleChange.bind(this)} value={this.state.wellbeingComments} />
+            <span style={{ fontSize: "14px" }}>Please write N/A if none</span>
 
             <h3 style={{ color: "#c2b49a" }}>Consent and Declaration</h3>
 
@@ -428,29 +693,21 @@ class RegistrationForm extends Component {
               &nbsp; I acknowledge that if I lose or damage equipment that is on loan then I am expected to pay
             for repairs or replacement of the equipment. {requiredField}</label><br /><br />
 
-            <label>I am over 18 years of age.</label><br />
+            <label>I am over 18 years of age.</label> {requiredField}<br />
             <label> Yes &nbsp;</label><input type="radio" name="over18" value="yes" onChange={this.handleChange.bind(this)} checked={this.state.over18 === "yes"} />
             <label>&nbsp;&nbsp;No &nbsp;</label><input type="radio" name="over18" value="no" onChange={this.handleChange.bind(this)} checked={this.state.over18 === "no"} /><br />
 
 
             {this.state.over18 === 'yes' ? (<section>
-              I, [full name], declare that the information I have provided in this registration form about myself is true and correct.<br />
-              Signature:<br />
-              Date:
-              </section>) : (<section></section>)}
+              I, &nbsp;<input className="form-text required" type="text" name="fullNameDeclaration" size="50" maxLength="40" onChange={this.handleChange.bind(this)} value={this.state.fullNameDeclaration} /> &nbsp; declare that the information I have provided in this registration form about myself is true and correct.<br />
+              Date: <DatePicker
+                onChange={this.updateDeclarationDate}
+                value={this.state.declarationDate}
+                maxDate={new Date()} />
+            </section>) : (<section></section>)}
 
             {this.state.over18 === 'no' ? (<section>
-              To be completed by the participant:<br />
-              I, [full name], declare that the information I have provided in this registration form about myself is true and correct.<br />
-              Signature:<br />
-              Date:
-              <br />
-              <br />
-              To be completed by the participant’s parent/guardian:<br />
-              I, [full name], the parent/guardian of [full name], declare that the information provided in this registration form about my child is true and correct. <br />
-              I have read this registration form, the detailed trip description and the relevant difficulty information and I give permission for my child to participate in this trip.<br />
-              Signature:<br />
-              Date:
+              This is an adult trip – you must be over 18 to attend.
               </section>) : (<section></section>)}
 
 
@@ -482,11 +739,8 @@ class RegistrationForm extends Component {
     var formSubmitted;
     if (this.state.formSubmitted) {
       formSubmitted = (<div>
-        {this.state.paymentType === "paypal" ?
-          <PaypalConfirmation /> :
-          <ChequeDDConfirmation totalCost={this.state.totalCost} surname={this.state.lastName} />}
-
         <br /><br />
+        <h4>Thank you for registering your interest for this trip. We will contact you with additional information soon.</h4>
         <input type="button" onClick={this.resetRegistrationForm} value="Register Somebody Else?" className="btn btn-primary" />
       </div>);
     }
