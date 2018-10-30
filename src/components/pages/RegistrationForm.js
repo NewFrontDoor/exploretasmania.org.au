@@ -326,19 +326,19 @@ class RegistrationForm extends Component {
       /*handle posting to drupal and show success message*/
       var form = new FormData();
       form.append("webform", "0209a95b-71f6-4482-ae80-a74c3d0e431c");
-      form.append("submission[data][1][values][0]", escape(this.state.firstName));
-      form.append("submission[data][2][values][0]", escape(this.state.lastName));
-      form.append("submission[data][3][values][0]", escape(this.state.preferredName));
+      form.append("submission[data][1][values][0]", escape(this.state.firstName).replace(/([\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2694-\u2697]|\uD83E[\uDD10-\uDD5D])/g, ''));
+      form.append("submission[data][2][values][0]", escape(this.state.lastName).replace(/([\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2694-\u2697]|\uD83E[\uDD10-\uDD5D])/g, ''));
+      form.append("submission[data][3][values][0]", escape(this.state.preferredName).replace(/([\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2694-\u2697]|\uD83E[\uDD10-\uDD5D])/g, ''));
       form.append("submission[data][62][values][0]", this.state.dob.toLocaleDateString("en-AU", dateFormatOptions));
-      form.append("submission[data][5][values][0]", escape(this.state.address));
-      form.append("submission[data][6][values][0]", escape(this.state.email));
-      form.append("submission[data][7][values][0]", escape(this.state.phone));
+      form.append("submission[data][5][values][0]", escape(this.state.address).replace(/([\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2694-\u2697]|\uD83E[\uDD10-\uDD5D])/g, ''));
+      form.append("submission[data][6][values][0]", escape(this.state.email).replace(/([\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2694-\u2697]|\uD83E[\uDD10-\uDD5D])/g, ''));
+      form.append("submission[data][7][values][0]", escape(this.state.phone).replace(/([\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2694-\u2697]|\uD83E[\uDD10-\uDD5D])/g, ''));
       form.append("submission[data][8][values][0]", this.state.readDescription);
       form.append("submission[data][9][values][0]", this.state.readDifficultyInfo);
       form.append("submission[data][10][values][0]", this.state.agreeToCall);
       form.append("submission[data][11][values][0]", this.state.agreeToPack);
       form.append("submission[data][12][values][0]", this.state.agreeToHaveChecked);
-      form.append("submission[data][13][values][0]", escape(this.state.dietaryRequirements));
+      form.append("submission[data][13][values][0]", escape(this.state.dietaryRequirements).replace(/([\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2694-\u2697]|\uD83E[\uDD10-\uDD5D])/g, ''));
       form.append("submission[data][14][values][0]", this.state.drinkWithBreakfast);
 
       if (this.state.drinkWithBreakfast === "yes") {
@@ -376,19 +376,19 @@ class RegistrationForm extends Component {
       }
 
       form.append("submission[data][18][values][0]", this.state.idAsChristian);
-      form.append("submission[data][19][values][0]", escape(this.state.church));
-      form.append("submission[data][20][values][0]", escape(this.state.nonChristianFriend));
+      form.append("submission[data][19][values][0]", escape(this.state.church).replace(/([\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2694-\u2697]|\uD83E[\uDD10-\uDD5D])/g, ''));
+      form.append("submission[data][20][values][0]", escape(this.state.nonChristianFriend).replace(/([\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2694-\u2697]|\uD83E[\uDD10-\uDD5D])/g, ''));
       form.append("submission[data][21][values][0]", this.state.idAsAnotherReligion);
-      form.append("submission[data][22][values][0]", escape(this.state.otherReligion));
-      form.append("submission[data][23][values][0]", escape(this.state.faithMeaning));
-      form.append("submission[data][24][values][0]", escape(this.state.contactName));
-      form.append("submission[data][25][values][0]", escape(this.state.contactRelationship));
-      form.append("submission[data][26][values][0]", escape(this.state.contactPhone));
-      form.append("submission[data][27][values][0]", escape(this.state.contactPhoneAlternate));
-      form.append("submission[data][28][values][0]", escape(this.state.contactEmail));
-      form.append("submission[data][29][values][0]", escape(this.state.doctorsName));
-      form.append("submission[data][30][values][0]", escape(this.state.doctorsPhone));
-      form.append("submission[data][31][values][0]", escape(this.state.medicalConditions));
+      form.append("submission[data][22][values][0]", escape(this.state.otherReligion).replace(/([\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2694-\u2697]|\uD83E[\uDD10-\uDD5D])/g, ''));
+      form.append("submission[data][23][values][0]", escape(this.state.faithMeaning).replace(/([\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2694-\u2697]|\uD83E[\uDD10-\uDD5D])/g, ''));
+      form.append("submission[data][24][values][0]", escape(this.state.contactName).replace(/([\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2694-\u2697]|\uD83E[\uDD10-\uDD5D])/g, ''));
+      form.append("submission[data][25][values][0]", escape(this.state.contactRelationship).replace(/([\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2694-\u2697]|\uD83E[\uDD10-\uDD5D])/g, ''));
+      form.append("submission[data][26][values][0]", escape(this.state.contactPhone).replace(/([\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2694-\u2697]|\uD83E[\uDD10-\uDD5D])/g, ''));
+      form.append("submission[data][27][values][0]", escape(this.state.contactPhoneAlternate).replace(/([\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2694-\u2697]|\uD83E[\uDD10-\uDD5D])/g, ''));
+      form.append("submission[data][28][values][0]", escape(this.state.contactEmail).replace(/([\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2694-\u2697]|\uD83E[\uDD10-\uDD5D])/g, ''));
+      form.append("submission[data][29][values][0]", escape(this.state.doctorsName).replace(/([\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2694-\u2697]|\uD83E[\uDD10-\uDD5D])/g, ''));
+      form.append("submission[data][30][values][0]", escape(this.state.doctorsPhone).replace(/([\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2694-\u2697]|\uD83E[\uDD10-\uDD5D])/g, ''));
+      form.append("submission[data][31][values][0]", escape(this.state.medicalConditions).replace(/([\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2694-\u2697]|\uD83E[\uDD10-\uDD5D])/g, ''));
 
       if (this.state.medicalConditions === "yes") {
         form.append("submission[data][32][values][0]", this.state.anaphylaxis);
@@ -407,15 +407,15 @@ class RegistrationForm extends Component {
         form.append("submission[data][44][values][0]", this.state.medicalConditionDetails);
       }
 
-      form.append("submission[data][45][values][0]", escape(this.state.allergicToAnything));
+      form.append("submission[data][45][values][0]", this.state.allergicToAnything);
       if (this.state.allergicToAnything === "yes") {
-        form.append("submission[data][46][values][0]", escape(this.state.allergyComments));
+        form.append("submission[data][46][values][0]", escape(this.state.allergyComments).replace(/([\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2694-\u2697]|\uD83E[\uDD10-\uDD5D])/g, ''));
       }
 
-      form.append("submission[data][47][values][0]", escape(this.state.medicationAndTreatment));
-      form.append("submission[data][48][values][0]", escape(this.state.glasses));
-      form.append("submission[data][49][values][0]", escape(this.state.swimmingAbility));
-      form.append("submission[data][50][values][0]", escape(this.state.wellbeingComments));
+      form.append("submission[data][47][values][0]", escape(this.state.medicationAndTreatment).replace(/([\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2694-\u2697]|\uD83E[\uDD10-\uDD5D])/g, ''));
+      form.append("submission[data][48][values][0]", this.state.glasses);
+      form.append("submission[data][49][values][0]", this.state.swimmingAbility);
+      form.append("submission[data][50][values][0]", escape(this.state.wellbeingComments).replace(/([\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2694-\u2697]|\uD83E[\uDD10-\uDD5D])/g, ''));
 
       form.append("submission[data][51][values][0]", this.state.physicallyDemandingAccept);
       form.append("submission[data][52][values][0]", this.state.riskAccept);
@@ -426,7 +426,7 @@ class RegistrationForm extends Component {
       form.append("submission[data][57][values][0]", this.state.lostEquipmentObligation);
 
       form.append("submission[data][58][values][0]", this.state.over18);
-      form.append("submission[data][59][values][0]", escape(this.state.fullNameDeclaration));
+      form.append("submission[data][59][values][0]", escape(this.state.fullNameDeclaration).replace(/([\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2694-\u2697]|\uD83E[\uDD10-\uDD5D])/g, ''));
       form.append("submission[data][63][values][0]", this.state.declarationDate.toLocaleDateString("en-AU", dateFormatOptions));
 
 
@@ -699,10 +699,13 @@ class RegistrationForm extends Component {
 
 
             {this.state.over18 === 'yes' ? (<section>
+              <br />
               I, &nbsp;<input className="form-text required" type="text" name="fullNameDeclaration" size="50" maxLength="40" onChange={this.handleChange.bind(this)} value={this.state.fullNameDeclaration} /> &nbsp; declare that the information I have provided in this registration form about myself is true and correct.<br />
-              Date: <DatePicker
+              <br />Date: <DatePicker
                 onChange={this.updateDeclarationDate}
                 value={this.state.declarationDate}
+                minDetail="month"
+                minDate={new Date()}
                 maxDate={new Date()} />
             </section>) : (<section></section>)}
 
@@ -728,7 +731,7 @@ class RegistrationForm extends Component {
           <p>{eventDates}<br />
             {eventLocation}</p>
 
-          <h3 style={{ color: "#c2b49a" }}>Registrations for --- have now closed.</h3>
+          <h3 style={{ color: "#c2b49a" }}>Registrations for this event have now closed.</h3>
         </section>
       )
     }
@@ -740,8 +743,8 @@ class RegistrationForm extends Component {
     if (this.state.formSubmitted) {
       formSubmitted = (<div>
         <br /><br />
-        <h4>Thank you for registering your interest for this trip. We will contact you with additional information soon.</h4>
-        <input type="button" onClick={this.resetRegistrationForm} value="Register Somebody Else?" className="btn btn-primary" />
+        <h4>Thank you for registering! We will contact you with additional information soon.</h4>
+        {/*<input type="button" onClick={this.resetRegistrationForm} value="Register Somebody Else?" className="btn btn-primary" />*/}
       </div>);
     }
     else {
