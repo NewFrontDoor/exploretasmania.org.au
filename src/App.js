@@ -30,6 +30,7 @@ import './assets/css/fontyourface/font.css';
 import './assets/nestor/css/color/green.css';
 
 import './assets/css/trippopup.css';
+import './assets/css/events.css';
 
 class App extends Component {
   render() {

@@ -1,0 +1,36 @@
+.upcoming-event{
+padding: 8px;
+box-sizing: border-box;
+border: 1px solid #ccc;
+margin-bottom: 5px;
+}
+
+/*.upcoming-event:hover{
+background: #eeeeee;
+}*/
+
+.upcoming-events{
+margin-bottom: 20px;
+width: 50%;
+}
+
+@media(max-width: 800px){
+    .upcoming-events{
+    width:100% !important;
+    }
+}
+
+.upcoming-event-title{
+    font-size: 1.1em;
+    margin-left: 45px;
+}
+
+.upcoming-event-date{
+    font-size: 0.9em;
+    margin-left: 45px;
+}
+
+.upcoming-event-icon{
+    font-size: 40px;
+    float: left;
+}

@@ -25,7 +25,6 @@ class RegistrationForm extends Component {
       firstName: "",
       lastName: "",
       preferredName: "",
-      dob: null,
       address: "",
       email: "",
       phone: "",
@@ -101,7 +100,6 @@ class RegistrationForm extends Component {
       firstName: "",
       lastName: "",
       preferredName: "",
-      dob: null,
       address: "",
       email: "",
       phone: "",
@@ -192,9 +190,6 @@ class RegistrationForm extends Component {
     if (validator.isEmpty(this.state.lastName)) {
       errorMessage += "Please enter your last name.\n";
     }
-    if (this.state.dob === null) {
-      errorMessage += "Please enter your date of birth.\n";
-    }
     if (validator.isEmpty(this.state.address)) {
       errorMessage += "Please enter your address.\n";
     }
@@ -269,9 +264,6 @@ class RegistrationForm extends Component {
     if (validator.isEmpty(this.state.swimmingAbility)) {
       errorMessage += "Please rate the level of your swimming ability.\n";
     }
-    if (validator.isEmpty(this.state.wellbeingComments)) {
-      errorMessage += "Please provide any additional information that would be helpful for managing your wellbeing.\n";
-    }
 
 
     /* Consent and Declaration */
@@ -329,7 +321,6 @@ class RegistrationForm extends Component {
       form.append("submission[data][1][values][0]", escape(this.state.firstName).replace(/([\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2694-\u2697]|\uD83E[\uDD10-\uDD5D])/g, ''));
       form.append("submission[data][2][values][0]", escape(this.state.lastName).replace(/([\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2694-\u2697]|\uD83E[\uDD10-\uDD5D])/g, ''));
       form.append("submission[data][3][values][0]", escape(this.state.preferredName).replace(/([\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2694-\u2697]|\uD83E[\uDD10-\uDD5D])/g, ''));
-      form.append("submission[data][62][values][0]", this.state.dob.toLocaleDateString("en-AU", dateFormatOptions));
       form.append("submission[data][5][values][0]", escape(this.state.address).replace(/([\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2694-\u2697]|\uD83E[\uDD10-\uDD5D])/g, ''));
       form.append("submission[data][6][values][0]", escape(this.state.email).replace(/([\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2694-\u2697]|\uD83E[\uDD10-\uDD5D])/g, ''));
       form.append("submission[data][7][values][0]", escape(this.state.phone).replace(/([\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2694-\u2697]|\uD83E[\uDD10-\uDD5D])/g, ''));
@@ -462,12 +453,6 @@ class RegistrationForm extends Component {
 
             <label>Preferred Name </label>
             <input className="form-control form-text required" type="text" name="preferredName" size="60" maxLength="128" onChange={this.handleChange.bind(this)} value={this.state.preferredName} />
-
-            <label>Date of Birth</label>{requiredField}<br />
-            <DatePicker
-              onChange={this.updateDOB}
-              value={this.state.dob}
-              maxDate={new Date()} /> <br /><br />
 
             <label>Address </label>{requiredField}
             <input className="form-control form-text required" type="text" name="address" size="60" maxLength="128" onChange={this.handleChange.bind(this)} value={this.state.address} />
@@ -647,7 +632,7 @@ class RegistrationForm extends Component {
             </select><br /><br />
 
             <label>
-              Please provide any additional information that would be helpful for managing your wellbeing {requiredField}</label><br />
+              Please provide any additional information that would be helpful for managing your wellbeing</label><br />
             <textarea className="form-control" name="wellbeingComments" rows="5" onChange={this.handleChange.bind(this)} value={this.state.wellbeingComments} />
             <span style={{ fontSize: "14px" }}>Please write N/A if none</span>
 
