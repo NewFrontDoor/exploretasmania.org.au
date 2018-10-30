@@ -72,7 +72,7 @@ class LakeRhonaTrip extends Component {
                         Day 3: Walk 6km (~4 hours return) from the campsite to the summit of Reeds Peak and back. This walk involves steep climbing and descending. Only day packs will need to be carried for this walk.<br /><br />
                         Day 4: Walk 14km (6-8 hours) back to the carpark. This walk involves a steep descent, sections of muddy track and a river crossing.<br /><br />
 
-                        <a href="javascript:void(0);"><button className="btn btn-primary">Register Your Interest for this Trip Here (PlaceHolder)</button></a>
+                        <a href="/register"><button className="btn btn-primary">Register Your Interest for this Trip Here</button></a>
 
                     </div>
                 </div>
