@@ -41,6 +41,18 @@
     height: 750px;
   }
 
+  @media(max-height: 850px){
+    .scrollable-frame{
+      height: 500px;
+    }
+  }
+
+  @media(max-height: 575px){
+    .scrollable-frame{
+      height: 350px;
+    }
+  }
+
   @media(max-width: 1000px){
     .popup-content{
       width: 100% !important;
