@@ -3118,7 +3118,7 @@ label {
 
 /* Mega Menu Items */
 .tb-megamenu { background-color: transparent !important; padding-top: 62px; }
-.tb-megamenu .nav li.dropdown.active > .dropdown-toggle, .tb-megamenu .nav li.dropdown.open.active > .dropdown-toggle, .tb-megamenu .nav > li.dropdown.open.active > a:hover { background-color: white;i color: #c2b49a; }
+.tb-megamenu .nav li.dropdown.active > .dropdown-toggle, .tb-megamenu .nav li.dropdown.open.active > .dropdown-toggle, .tb-megamenu .nav > li.dropdown.open.active > a:hover { background-color: white; color: #c2b49a; }
 .tb-megamenu .nav li.dropdown.active > .dropdown-toggle { background-color: white; color: #c2b49a; }
 .tb-megamenu .nav li.dropdown.open > .dropdown-toggle { color: #c2b49a; }
 .tb-megamenu .nav { float: right; }
