@@ -1,5 +1,4 @@
 /* eslint-disable */
-
 import React, { Component } from 'react';
 import _ from 'lodash';
 import validator from 'validator';
@@ -175,7 +174,6 @@ class RegistrationForm extends Component {
     this.setState(change);
   }
 
-  updateDOB = date => this.setState({ dob: date })
   updateDeclarationDate = date => this.setState({ declarationDate: date })
 
   handleSubmit(e) {

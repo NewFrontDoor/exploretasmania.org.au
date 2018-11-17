@@ -4,17 +4,13 @@ import Difficulty from './Difficulty';
 import TripPopup from './TripPopup';
 
 class UpcomingTrip extends Component {
-    constructor(props) {
-        super(props);
-    }
     render() {
         return (
 
-            <section>
+            <section className="upcoming-trip">
                 <div className="header"> <h5>{this.props.name}</h5> </div>
                 <div className="content">
-                    <TripPopup trigger={<a href="javascript:void(0);"><img className="img img-responsive" src={this.props.img} difficulty={this.props.difficulty} /></a>} /><br />
-                    <span style={{ fontSize: "10px" }}>Click on the image for more detailed trip information</span><br /><br />
+                    <img className="img img-responsive" src={this.props.img} difficulty={this.props.difficulty} /><br /><br />
                     {this.props.desc} <br /><br />
                     <ul className="no-list-style no-margin-or-padding">
                         <li>
@@ -28,7 +24,9 @@ class UpcomingTrip extends Component {
                         </li>
                     </ul>
                     <br />
-                    <em>This is an adult trip – you must be over 18 to attend.</em>
+                    <em>This is an adult trip – you must be over 18 to attend.</em><br /><br />
+                    <TripPopup trigger={<a href="javascript:void(0);"><div className="text-center"><button className="btn btn-primary">Read more and Register</button></div></a>} content={this.props.popupContent} />
+                    <br />
                 </div>
             </ section>
         );

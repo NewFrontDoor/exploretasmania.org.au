@@ -56,3 +56,19 @@
 .align-baseline{
   vertical-align: baseline;
 }
+
+/*positioning of FFW banner on slider*/
+.slider-overlay{
+  max-width: 75% !important;
+  margin-top: -1em;
+}
+
+@media(max-width: 767px){
+  .slider-overlay{
+    margin-top: -8em;
+  }
+}
+
+.upcoming-trip{
+  margin-top: 15px;
+}

@@ -1,7 +1,6 @@
 /*eslint-disable*/
 import React, { Component } from 'react';
 import Popup from 'reactjs-popup'
-import LakeRhonaTrip from '../pages/LakeRhonaTrip';
 
 class TripPopup extends Component {
     render() {
@@ -12,7 +11,7 @@ class TripPopup extends Component {
                         <a className="close" onClick={close}>
                             &times;
         </a>
-                        <LakeRhonaTrip />
+                        {this.props.content}
                     </div>
                 )}
             </Popup>
