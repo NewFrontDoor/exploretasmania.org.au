@@ -13,8 +13,7 @@ class UpcomingEvents extends Component {
 
           <div className="content" style={{ marginTop: 0 }}>
             <div className="upcoming-events">
-              <UpcomingEvent title="3 Day Freycinet Trip Commences" startDate="Friday, 11 January 2019 7:30AM" />
-              <UpcomingEvent title="4 Day Freycinet Trip Commences" startDate="Thursday, 17 January 2019 7:30AM" />
+              <UpcomingEvent title="Event Details" startDate="TBA" />
             </div>
 
 
