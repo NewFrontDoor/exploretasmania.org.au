@@ -72,3 +72,27 @@
 .upcoming-trip{
   margin-top: 15px;
 }
+
+@media (max-width: 991px) {
+  .full-desktop-only{
+      display: none;
+  }
+}
+
+@media (min-width: 991px) {
+  .not-full-desktop{
+      display: none;
+  }
+}
+
+@media (max-width: 767px) {
+  .desktop-only{
+      display: none;
+  }
+}
+@media (min-width: 768px) {
+  .mobile-only{
+      display: none;
+      
+  }
+}

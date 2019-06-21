@@ -4,8 +4,10 @@ import _ from 'lodash';
 
 import overlay from '../../assets/slider-overlay.png';
 import slider1 from '../../assets/slider-1.jpg';
+import slider2 from '../../assets/slider-2.jpg';
 import slider3 from '../../assets/slider-3.jpg';
 import slider4 from '../../assets/slider-4.jpg';
+import slider5 from '../../assets/slider-5.jpg';
 
 /*
 const slides = [{"src": "https://summerleaschurch.org/sites/summerleaschurch.org/files/styles/image_full_width/public/community%20web%20slider.jpg?itok=wztd4SUb",
@@ -31,6 +33,14 @@ const slides = [{
   }
 },
 {
+  "src": slider2,
+  "alt": "",
+  "caption":
+  {
+    //"header": "Welcome to Explore Tasmania"
+  }
+},
+{
   "src": slider3,
   "alt": "",
   "caption":
@@ -45,7 +55,15 @@ const slides = [{
   {
     //"header": "Welcome to Explore Tasmania"
   }
-}
+},
+{
+  "src": slider5,
+  "alt": "",
+  "caption":
+  {
+    //"header": "Welcome to Explore Tasmania"
+  }
+},
 
 ];
 

@@ -36,35 +36,46 @@ class SupportUs extends Component {
                       <div className="node node-page clearfix">
                         <div className="content">
                           <div className="field field-name-body field-type-text-with-summary field-label-hidden">
-                          <div className="field-items">
-                          <div className="field-item even">
+                            <div className="field-items">
+                              <div className="field-item even">
 
-                          <p>Explore primarily aims to support you in your evangelism – so please consider bringing a friend along on one of our trips!<br/><br/>
-                          Please also pray for us; this is God’s work, so we need Him to be working through us every step of the way – when we are on trips and when we are planning and preparing. Please contact us to receive our prayer newsletter.<br/><br/>
-                          Finally, we also need financial support to be able to run this ministry. If you wish to make a donation to support Explore financially please do so.</p>
+                                <p>Explore primarily aims to support you in your evangelism – so please consider bringing a friend along on one of our trips!<br /><br />
+                                  Please also pray for us; this is God’s work, so we need Him to be working through us every step of the way – when we are on trips and when we are planning and preparing. Please contact us to receive our prayer newsletter.<br /><br />
+                                  Finally, we also need financial support to be able to run this ministry. If you wish to make a donation to support Explore financially please do so.</p>
 
-                          <br />
-                          <button className="btn btn-primary" name="donate">Donate to Explore (Coming soon)</button>
-
-
-                    </div></div></div></div>
-
-
-
-                </div>
-                  </div>
-                </div>  </div>
-
+                                <br />
+                                <button className="btn btn-primary" name="donate">Donate to Explore (Coming soon)</button>
+                                {/*<div className="col-xs-12 text-center">
+                                  <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+                                    <input type="hidden" name="cmd" value="_s-xclick" />
+                                    <input type="hidden" name="hosted_button_id" value="PM2TUDYLS324A" />
+                                    <input type="image" src="https://www.paypalobjects.com/en_AU/i/btn/btn_donateCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button" />
+                                    <img alt="" border="0" src="https://www.paypal.com/en_AU/i/scr/pixel.gif" width="1" height="1" />
+                                  </form>
+                                </div>*/}
 
 
-                        </div>
 
+
+
+                              </div></div></div></div>
 
 
 
                       </div>
                     </div>
-                  </div>
+                  </div>  </div>
+
+
+
+              </div>
+
+
+
+
+            </div>
+          </div>
+        </div>
       </section>
     );
   }
