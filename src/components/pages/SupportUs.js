@@ -44,15 +44,19 @@ class SupportUs extends Component {
                                   Finally, we also need financial support to be able to run this ministry. If you wish to make a donation to support Explore financially please do so.</p>
 
                                 <br />
-                                <button className="btn btn-primary" name="donate">Donate to Explore (Coming soon)</button>
-                                {/*<div className="col-xs-12 text-center">
+                                <div className="col-xs-12 text-center" style={{ marginBottom: "25px" }}>
                                   <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
                                     <input type="hidden" name="cmd" value="_s-xclick" />
                                     <input type="hidden" name="hosted_button_id" value="PM2TUDYLS324A" />
-                                    <input type="image" src="https://www.paypalobjects.com/en_AU/i/btn/btn_donateCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button" />
+                                    {/*<input type="image" src="https://www.paypalobjects.com/en_AU/i/btn/btn_donateCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button" />*/}
+                                    <input type="submit" className="btn btn-primary" name="submit" value="Donate to Explore Tasmania" />
                                     <img alt="" border="0" src="https://www.paypal.com/en_AU/i/scr/pixel.gif" width="1" height="1" />
                                   </form>
-                                </div>*/}
+                                </div>
+
+                                <p className="text-center">
+                                  <em>Payments are processed for Explore Tasmania by Presbyterian Church of Tasmania.</em>
+                                </p>
 
 
 
@@ -76,7 +80,7 @@ class SupportUs extends Component {
             </div>
           </div>
         </div>
-      </section>
+      </section >
     );
   }
 }
