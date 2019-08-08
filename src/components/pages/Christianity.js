@@ -53,8 +53,8 @@ class Christianity extends Component {
                           </div>
                       </div>
                     </p>*/}
-                    <p>We are a group of Bible-believing Christians from different churches across Tasmania.</p><br />
-                        We uphold the fundamental truths of Christianity including: <br/>
+                    <p>Explore is lead by a group of Bible-believing Christians from different churches across Tasmania. On our trips we invite participants to read a section of the Bible together and engage in an open conversation about what it is saying.</p><br />
+                       The team at Explore upholds the fundamental truths of Christianity including: <br/>
                         <ul className="padding-5" style={{marginLeft: "30px", marginTop: "10px"}}>
                           <li>The divine inspiration and infallibility of Holy Scripture as originally given and its supreme authority in all matters of faith and conduct.</li>
                           <li>The unity of the Father, the Son and the Holy Spirit in the Godhead.</li>

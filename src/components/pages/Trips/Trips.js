@@ -45,17 +45,11 @@ class Events extends Component {
                             <img height="250" width="300" src={image1} alt="" className="img img-responsive" />
                           </div>
                           <br />
-                          <p>Explore runs bushwalking and rock-climbing trips where we can build friendships, explore faith and enjoy the wilderness. <br /><br />
+                          <p>Explore runs outdoor trips where we support and encourage our participants to build friendships, explore faith and enjoy the wilderness. Our trips include easy half-day bushwalks, epic multi-day wilderness hikes, rock climbing, abseiling and everything in between. We lead trips in many wilderness locations throughout Tasmania; these destinations include the world-famous beaches in the Freycinet National Park, the impressive sea cliffs of Tasman National Park, the towering summit of Frenchmans Cap and the picturesque rainforest surrounding Lake St Clair. All of our trips include time for relaxing, socialising and taking in your surroundings. Our trips are fully catered and we provide all of the specialist equipment required; all you need is warm clothes and appropriate footwear. It doesn’t matter if this is your first trip into the Tasmanian wilderness or your fiftieth, we would love to have you join us!</p>
 
-                            We ask that Christians and non-Christians come on our trips together.<br /><br />
+                          <p>The team at Explore believes in the Christian God, who shows himself to us through the Bible and through the world around us. On our trips we hope you will see God through the wilderness you are surrounded by and through what he has told us in the Bible. On all of our trips we will invite you to read a part of the Bible with us and to have an open conversation about what it is saying. We would love our trips to be an opportunity for people with different beliefs to have these conversations together, so if you are a Christain coming on an Explore trip we ask you to invite someone with different beliefs to come along with you. And if you are someone who doesn’t believe in the Christain God we look forward to learning about what you believe and sharing with you some of what we believe.</p>
 
-                            Our trips vary in length and difficulty level, and are run in a number of our Tasmanian National Parks, Reserves, and World heritage areas. <br /><br />
-
-                          </p>
-
-                          <p>
-                            We are currently planning trips for the 2019/2020 summer. Please get in touch if either you or your church would like to plan an trip with us.
-                          </p>
+                          <p>We are currently planning trips for the 2019/2020 summer, so if you or an organisation you are part of would like to plan a trip with us please get in touch with us as soon as possible.</p>
 
                           <div className="text-center not-full-desktop">
                             <img height="250" width="300" src={image2} alt="" className="img img-responsive" />

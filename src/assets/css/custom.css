@@ -12,6 +12,29 @@
 
 }
 
+.guide-img-wrapper{
+  position: relative;
+  max-width: 263px;
+  max-height: 263px;
+
+}
+
+.guide-img-overlay{
+  position: absolute;
+  color: #fff;
+  width: 100%;
+  height: 100%;
+  z-index: 99;
+  left:0;
+  top: 0;
+  background-color: rgba(0,0,0,0.5);
+  text-align: center;
+}
+.guide-img-overlay h4{
+  color: #fff;
+  margin-top: 40% !important;
+}
+
 .item-box-desc{
   padding: 20px 20px;
     overflow: hidden;
@@ -96,3 +119,32 @@
       
   }
 }
+
+@media (min-width: 991px) {
+  header{
+    background-color: #1e6131 !important;
+  }
+}
+
+@media (max-width: 990px) {
+  #logo-region{
+    background-color: #1e6131 !important;
+  }
+  .tb-megamenu{
+    padding-top: 0;
+  }
+  .nestor-main-menu .navbar-toggle {
+    margin-top: 30px;
+    margin-bottom: 30px;
+  }
+}
+
+.tb-megamenu .nav > li > a{
+  color: #fff !important;
+}
+.tb-megamenu .nav > li > a:hover{
+  color: #1e6131 !important;
+}
+
+
+
