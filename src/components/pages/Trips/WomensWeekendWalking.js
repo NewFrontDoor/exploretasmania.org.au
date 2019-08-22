@@ -34,6 +34,8 @@ class WomensWeekendWalking extends Component {
                             <li>
                                 <strong>Guides for this Trip:</strong> <a href="/guides" target="_blank">Hannah Fair and Layah Conry</a>
                             </li>
+                        </ul>
+                        <ul className="no-list-style no-margin-or-padding">
                             <li>
                                 <strong>Briefing:</strong> There will be a compulsory briefing from 5:30 to 6:30pm on Friday 4th October in the Hobart CBD, location to be confirmed<br />
                                 <em>If you are unable to attend this briefing please arrange with us to be briefed at an alternative time.</em>

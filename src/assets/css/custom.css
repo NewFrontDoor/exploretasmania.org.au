@@ -3,11 +3,10 @@
 }
 
 .item-box {
-  display: block;
+  display: inline-block;
   overflow: hidden;
-  margin: 16px 0;
-  width: 100%;
-  position: relative;
+  margin: 0 auto;
+
   border-radius: 6px;
 
 }
@@ -30,7 +29,7 @@
   background-color: rgba(0,0,0,0.5);
   text-align: center;
 }
-.guide-img-overlay h4{
+.guide-img-overlay input{
   color: #fff;
   margin-top: 40% !important;
 }
@@ -38,8 +37,10 @@
 .item-box-desc{
   padding: 20px 20px;
     overflow: hidden;
+}
 
-
+.btn-primary {
+ border-color: #1e6131
 }
 
 .guide-bio{
@@ -148,3 +149,7 @@
 
 
 
+.guide-info-popup{
+  color: #000;
+  text-align: left;
+}

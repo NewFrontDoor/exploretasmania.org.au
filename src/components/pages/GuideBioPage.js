@@ -1,27 +1,41 @@
 import React, { Component } from 'react';
-import { getGuides } from '../../utils/fetchJSON';
-import Guide from '../models/Guide';
+import { getGuideByName } from '../../utils/fetchJSON';
 
 
-class Guides extends Component {
+class GuideBioPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      guides: null
+      guide: null,
+      guideName: this.props.match.params.name
     }
   }
 
   componentWillMount() {
     var that = this;
-    getGuides(function (data) {
-      that.setState({ guides: data });
+    getGuideByName(this.state.guideName, function (data) {
+      that.setState({ guide: data });
     });
   }
 
   render() {
-    var guides = <h2><i className="fa fa-spinner"></i></h2>;
-    if (this.state.guides !== null) {
-      guides = this.state.guides.map(guide => <Guide key={guide.id} id={guide.id} name={guide.name} image={guide.img} bio={guide.bio} title={guide.role} />)
+    var guide = <h2><i className="fa fa-spinner"></i></h2>;
+    var name = "";
+    if (this.state.guide !== null) {
+      name = this.state.guide[0].name;
+      guide = this.state.guide.map(guide =>
+        <div className="col-md-12" key={guide.id}>
+          <div className="col-md-4 col-xs-12 text-center">
+            <img src={guide.img} alt="" />
+            <div className="item-box-desc text-center">
+              <h4>{guide.name}</h4>
+              <small>{guide.role}</small>
+            </div>
+          </div>
+          <div className="col-md-8 col-xs-12" style={{ textAlign: "middle" }}>
+            <span dangerouslySetInnerHTML={{ __html: guide.bio }} />
+          </div>
+        </div>)
     }
     return (
       <section>
@@ -30,7 +44,7 @@ class Guides extends Component {
             <div className="row">
               <div id="top-content-left-region" className="top-content-left col-xs-12 col-md-6 text-center-sm">
                 <div id="page-title-block" className="page-title block">
-                  <h1>Guides</h1>
+                  <h1>{name}</h1>
                 </div>
               </div>
 
@@ -39,7 +53,11 @@ class Guides extends Component {
                   <div className="breadcrumbs">
                     <a href="/">Home</a>
                     <span className="delimiter">›</span>
-                    <span title="" className="nolink">Guides</span>
+                    <a href="/Guides">Guides</a>
+                    {this.state.guide !== null ? (<span>
+                      <span className="delimiter">›</span>
+                      <span title="" className="nolink">{name}</span>
+                    </span>) : ''}
                   </div>
                 </div>
               </div>
@@ -53,7 +71,7 @@ class Guides extends Component {
                 <div className="region region-content">
                   <div className="content">
 
-                    {guides}
+                    {guide}
 
 
                   </div>
@@ -67,4 +85,4 @@ class Guides extends Component {
   }
 }
 
-export default Guides;
+export default GuideBioPage;
