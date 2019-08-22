@@ -7,21 +7,23 @@ class GuideBioPage extends Component {
     super(props);
     this.state = {
       guide: null,
-      guideName: this.props.match.params.name
+      guideName: this.props.match.params.name,
+      loading: true
     }
   }
 
   componentWillMount() {
     var that = this;
     getGuideByName(this.state.guideName, function (data) {
-      that.setState({ guide: data });
+      that.setState({ guide: data, loading: false });
+
     });
   }
 
   render() {
-    var guide = <h2><i className="fa fa-spinner"></i></h2>;
+    var guide = "";
     var name = "";
-    if (this.state.guide !== null) {
+    if (this.state.guide !== null && this.state.guide.length > 0) {
       name = this.state.guide[0].name;
       guide = this.state.guide.map(guide =>
         <div className="col-md-12" key={guide.id}>
@@ -36,6 +38,10 @@ class GuideBioPage extends Component {
             <span dangerouslySetInnerHTML={{ __html: guide.bio }} />
           </div>
         </div>)
+    }
+    else if (this.state.guide !== null) {
+      guide = <p>That guide could not be found, please go to <a href="/Guides">this page</a> for a full list of the Explore Tasmania guides.</p>
+
     }
     return (
       <section>
@@ -54,7 +60,7 @@ class GuideBioPage extends Component {
                     <a href="/">Home</a>
                     <span className="delimiter">›</span>
                     <a href="/Guides">Guides</a>
-                    {this.state.guide !== null ? (<span>
+                    {this.state.guide !== null && this.state.guide.length > 0 ? (<span>
                       <span className="delimiter">›</span>
                       <span title="" className="nolink">{name}</span>
                     </span>) : ''}
@@ -71,6 +77,7 @@ class GuideBioPage extends Component {
                 <div className="region region-content">
                   <div className="content">
 
+                    {this.state.loading ? <h2><i className="fa fa-spinner"></i></h2> : ''}
                     {guide}
 
 
