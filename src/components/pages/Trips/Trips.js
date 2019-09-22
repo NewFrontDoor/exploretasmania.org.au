@@ -5,6 +5,8 @@ import image1 from '../../../assets/image1.jpg';
 import image2 from '../../../assets/image3.jpg';
 import WomensWeekendWalking from './WomensWeekendWalking';
 import WomensWalkingTrip from '../../../assets/WomensWalkingTrip.jpg'
+import TasmanPeninsulaOutdoorXP from './TasmanPeninsulaOutdoorXP';
+import TasmanPeninsulaOutdoorXPImg from '../../../assets/TasmanPeninsula.jpg'
 
 class Events extends Component {
   render() {
@@ -56,10 +58,10 @@ class Events extends Component {
                           </div>
 
 
-                          <h4>Upcoming Trips</h4>
+                          <h4 className="padding-top-20">Upcoming Trips</h4>
                           <br />
                           <div className="row">
-                            <div className="col-md-8">
+                            <div className="col-md-10">
                               <UpcomingTrip name="Women’s Weekend Walking: 5-6 October 2019"
                                 desc="Lake St Clair is Australia’s deepest lake. It is nestled between multiple mountain ranges and surrounded by rainforest. From the cascading creeks and multicoloured mushrooms in the forest to the expansive waters of the lake and the towering surrounding mountains, there is no shortage of wonders to admire. On this 2 day trip we plan to walk through the forest, camp on the side of the lake and climb one of the surrounding mountains!"
                                 img={WomensWalkingTrip}
@@ -67,6 +69,18 @@ class Events extends Component {
                                 activity="Bushwalking"
                                 length="2 days"
                                 popupContent={<WomensWeekendWalking />}
+                              />
+                            </div>
+                          </div>
+                          <div className="row">
+                            <div className="col-md-10">
+                              <UpcomingTrip name="Tasman Peninsula Outdoor Experience: 16 November 2019"
+                                desc="You have probably heard of the Tasman Peninsula as the location of the famous Port Arthur Historic Site. You may not know that the Tasman Peninsula is also home to a wide variety of natural wonders! On this trip we will explore some of the diverse coastal scenery on the Tasman Peninsula. This will include the towering sea cliffs of Cape Hauy, the intricate detail of the Tessellated Pavement and the power of the ocean on display at The Blowhole."
+                                img={TasmanPeninsulaOutdoorXPImg}
+                                difficulty={1}
+                                activity="Bushwalking, sightseeing"
+                                length="1 day"
+                                popupContent={<TasmanPeninsulaOutdoorXP />}
                               />
                             </div>
                           </div>
