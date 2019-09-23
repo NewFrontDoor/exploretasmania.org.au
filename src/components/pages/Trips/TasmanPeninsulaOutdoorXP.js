@@ -47,6 +47,10 @@ class TasmanPeninsulaOutdoorXP extends Component {
                             <li>
                                 <em>This is an adult trip – you must be over 18 to attend.</em>
                             </li>
+                            <br />
+                            <li>
+                                <em>This is a trip primarily for international students, though other interested individuals are welcome to join us too.</em>
+                            </li>
                         </ul>
                         <br />
                         <br />

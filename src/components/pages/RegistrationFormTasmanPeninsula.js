@@ -8,10 +8,13 @@ import DatePicker from 'react-date-picker'
 
 import { postToWebform } from '../../utils/postToAPI.js';
 
+import TasmanPeninsulaPaypal from './registrations/TasmanPeninsulaPaypal';
+
 const registrationCloseDate = new Date('2020-12-30');
 const registrationsOpen = registrationCloseDate.getTime() > Date.now();
 
 const dateFormatOptions = { year: 'numeric', month: 'numeric', day: 'numeric' };
+const tripCost = 30;
 
 
 class RegistrationFormTasmanPeninsula extends Component {
@@ -238,20 +241,20 @@ class RegistrationFormTasmanPeninsula extends Component {
         if (validator.isEmpty(this.state.doctorsPhone)) {
             errorMessage += "Please enter the contact number for your doctor.\n";
         }*/
-        if (this.state.medicalConditions === null) {
+        if (this.state.medicalConditions === "") {
             errorMessage += "Please state whether or not you have any medical conditions.\n";
         }
         if (this.state.medicalConditions === "yes" && validator.isEmpty(this.state.medicalConditionDetails)) {
             errorMessage += "Please enter specific details for your medical condition(s).\n";
         }
-        if (this.state.allergicToAnything === null) {
+        if (this.state.allergicToAnything === "") {
             errorMessage += "Please state whether or not you have any allergies.\n";
         }
         if (this.state.allergicToAnything === "yes" && validator.isEmpty(this.state.allergyComments)) {
             errorMessage += "Please enter specific details for each of your allergies.\n";
         }
 
-        if (this.state.glasses === null) {
+        if (this.state.glasses === "") {
             errorMessage += "Please state whether or not you wear glasses or contact lenses.\n";
         }
         if (validator.isEmpty(this.state.swimmingAbility)) {
@@ -684,10 +687,7 @@ class RegistrationFormTasmanPeninsula extends Component {
         var formSubmitted;
         if (this.state.formSubmitted) {
             formSubmitted = (<div>
-                <br /><br />
-                <h4>Thank you for registering!</h4>
-                <h4>In order to finalise your registration please click the button below to pay for the trip using Paypal...</h4>
-                {/*<input type="button" onClick={this.resetRegistrationForm} value="Register Somebody Else?" className="btn btn-primary" />*/}
+                {this.state.submissionID ? <TasmanPeninsulaPaypal sid={this.state.submissionID} tripCost={tripCost} tripName="Tasman Peninsula" /> : ''}
             </div>);
         }
         else {
@@ -700,8 +700,6 @@ class RegistrationFormTasmanPeninsula extends Component {
                 <section className="container">
                     {formSubmitted}
                     {registrationForm}
-
-
                 </section>
             </section>
         );

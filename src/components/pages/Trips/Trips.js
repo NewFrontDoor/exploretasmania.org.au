@@ -81,6 +81,7 @@ class Events extends Component {
                                 activity="Bushwalking, sightseeing"
                                 length="1 day"
                                 popupContent={<TasmanPeninsulaOutdoorXP />}
+                                focusEvent="yes"
                               />
                             </div>
                           </div>

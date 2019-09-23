@@ -14,6 +14,7 @@ class UpcomingEvents extends Component {
           <div className="content" style={{ marginTop: 0 }}>
             <div className="upcoming-events">
               <UpcomingEvent title="Women’s Weekend Walking" startDate="5-6 October 2019" />
+              <UpcomingEvent title="Tasman Peninsula Outdoor Experience" startDate="16 November 2019" />
 
             </div>
 

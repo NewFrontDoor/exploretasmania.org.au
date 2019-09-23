@@ -4,6 +4,10 @@ import Difficulty from './Difficulty';
 import TripPopup from './TripPopup';
 
 class UpcomingTrip extends Component {
+    constructor(props) {
+        super(props);
+        this.state = { focusEvent: this.props.focusEvent }
+    }
     render() {
         return (
 
@@ -25,6 +29,7 @@ class UpcomingTrip extends Component {
                     </ul>
                     <br />
                     <em>This is an adult trip – you must be over 18 to attend.</em><br /><br />
+                    {this.state.focusEvent === "yes" ? <section><em>This is a trip primarily for international students, though other interested individuals are welcome to join us too.</em><br /><br /></section> : ''}
                     <TripPopup trigger={<a href="javascript:void(0);"><div className="text-center"><button className="btn btn-primary">Read more and Register</button></div></a>} content={this.props.popupContent} />
                     <br />
                 </div>
