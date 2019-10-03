@@ -435,7 +435,7 @@ class RegistrationFormTasmanPeninsula extends Component {
                 <section>
                     <p>{this.props.eventDates}<br />
                         {this.props.eventLocation}</p>
-
+                    <p>Your contact information and religious background information will be provided to both FOCUS and Explore but your medical information will only be provided to Explore as it is only required to ensure your safety on this trip.</p>
                     <br />
                     <form onSubmit={this.handleSubmit}>
 
