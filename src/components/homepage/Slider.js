@@ -1,4 +1,3 @@
-/* eslint-disable */
 import React, { Component } from 'react';
 import _ from 'lodash';
 
@@ -76,12 +75,12 @@ class Slider extends Component {
         return (
           <li key={_.uniqueId()}>
             <figure>
-              <img className="img-responsive img-full-width" src={slide.src} width="1440" height="600" />
+              <img className="img-responsive img-full-width" src={slide.src} width="1440" height="600" alt="" />
               <figcaption className="text-center">
                 <div className="highlighted-slider-2-content">
-                  {slide.caption.header ? (<h1 className="slider-title">{slide.caption.header}</h1>) : (<h1></h1>)}
+                  {slide.caption.header ? (<h1 className="slider-title">{slide.caption.header}</h1>) : ''}
                   {slide.caption.description ? (<p className="slider-description">{slide.caption.description}</p>) : (<p></p>)}
-                  <img className="slider-overlay img img-responsive" src={overlay} />
+                  <img className="slider-overlay img img-responsive" src={overlay} alt="" />
                   {slide.caption.linkText ? (<a href={slide.caption.href} className="btn btn-default">{slide.caption.linkText}</a>) : (<section></section>)}
 
 
@@ -96,7 +95,8 @@ class Slider extends Component {
         return (
           <li key={_.uniqueId()}>
             <figure>
-              <a href="#">
+              <a href="#" //eslint-disable-line
+              >
                 <img className="img-responsive img-full-width" src={slide.src} width="1440" height="600" alt={slide.alt} title={slide.alt} />    </a>
             </figure>
           </li>

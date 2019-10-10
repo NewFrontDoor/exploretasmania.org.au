@@ -1,7 +1,4 @@
-/* eslint-disable */
 import React, { Component } from 'react';
-import _ from 'lodash';
-
 
 class Paypal extends Component {
 

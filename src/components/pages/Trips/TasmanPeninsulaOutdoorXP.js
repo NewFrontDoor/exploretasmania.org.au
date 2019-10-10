@@ -1,4 +1,3 @@
-/*eslint-disable*/
 import React, { Component } from 'react';
 import Difficulty from '../../models/Difficulty'
 import TripImg from '../../../assets/TasmanPeninsula.jpg';

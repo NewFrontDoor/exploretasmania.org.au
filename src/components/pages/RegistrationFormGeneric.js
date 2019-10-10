@@ -1,6 +1,4 @@
-/* eslint-disable */
 import React, { Component } from 'react';
-import _ from 'lodash';
 import validator from 'validator';
 import { escape } from 'he'
 

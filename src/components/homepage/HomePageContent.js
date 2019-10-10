@@ -1,7 +1,5 @@
-/* eslint-disable */
 import React, { Component } from 'react';
 
-import WhereToFindUs from './WhereToFindUs';
 import UpcomingEvents from './UpcomingEvents';
 
 class HomePageContent extends Component {

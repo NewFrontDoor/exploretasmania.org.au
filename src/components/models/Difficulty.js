@@ -1,4 +1,3 @@
-/*eslint-disable*/
 import React, { Component } from 'react';
 import _ from 'lodash';
 import difficultyImg from '../../assets/difficultyImg.png';
@@ -17,7 +16,7 @@ class Difficulty extends Component {
         };
         return (
             <span>
-                {_.times(this.props.difficulty, () => <img key={_.uniqueId()} className="align-baseline" src={difficultyImg} height="31" width="23" />)} {difficultyRating[this.props.difficulty]} - read more <a href={difficultyRatings} target="_blank" rel="noreferrer noopener">here</a>
+                {_.times(this.props.difficulty, () => <img key={_.uniqueId()} className="align-baseline" src={difficultyImg} height="31" width="23" alt="difficulty" />)} {difficultyRating[this.props.difficulty]} - read more <a href={difficultyRatings} target="_blank" rel="noreferrer noopener">here</a>
             </span>
         );
     }
