@@ -81,6 +81,8 @@ class RegistrationFormTasmanPeninsula extends Component {
             inherentRiskAccept: false,
             treatmentAuthorisation: false,
             lostEquipmentObligation: false,
+            canTakePictures: false,
+            canUseMyPictures: false,
             over18: null,
             fullNameDeclaration: "[Your Full Name]",
             declarationDate: null,
@@ -156,6 +158,8 @@ class RegistrationFormTasmanPeninsula extends Component {
             inherentRiskAccept: false,
             treatmentAuthorisation: false,
             lostEquipmentObligation: false,
+            canTakePictures: false,
+            canUseMyPictures: false,
             over18: null,
             fullNameDeclaration: "[Your Full Name]",
             declarationDate: null,
@@ -410,6 +414,9 @@ class RegistrationFormTasmanPeninsula extends Component {
             form.append("submission[data][56][values][0]", this.state.treatmentAuthorisation);
             form.append("submission[data][57][values][0]", this.state.lostEquipmentObligation);
 
+            form.append("submission[data][61][values][0]", this.state.canTakePictures);
+            form.append("submission[data][62][values][0]", this.state.canUseMyPictures);
+
             form.append("submission[data][58][values][0]", this.state.over18);
             form.append("submission[data][59][values][0]", escape(this.state.fullNameDeclaration).replace(/([\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2694-\u2697]|\uD83E[\uDD10-\uDD5D])/g, ''));
             form.append("submission[data][60][values][0]", this.state.declarationDate.toLocaleDateString("en-AU", dateFormatOptions));
@@ -635,6 +642,12 @@ class RegistrationFormTasmanPeninsula extends Component {
                         <label><input type="checkbox" name="lostEquipmentObligation" value={this.state.lostEquipmentObligation} onChange={this.handleChange.bind(this)} />
                             &nbsp; I acknowledge that if I lose or damage equipment that is on loan then I am expected to pay
             for repairs or replacement of the equipment. {requiredField}</label><br /><br />
+
+            <label><input type="checkbox" name="canTakePictures" value={this.state.canTakePictures} onChange={this.handleChange.bind(this)} />
+                            &nbsp; I consent to Explore sharing photos and videos of me from this trip. I am aware that this may including publication on their website, social media accounts and printed advertising material.</label><br /><br />
+
+            <label><input type="checkbox" name="canUseMyPictures" value={this.state.canUseMyPictures} onChange={this.handleChange.bind(this)} />
+                            &nbsp; I consent to Explore sharing photos and videos that I have taken on this trip. I am aware that this may including publication on their website, social media accounts and printed advertising material.</label><br /><br />
 
                         <label>I am over 18 years of age.</label> {requiredField}<br />
                         <label> Yes &nbsp;</label><input type="radio" name="over18" value="yes" onChange={this.handleChange.bind(this)} checked={this.state.over18 === "yes"} />
