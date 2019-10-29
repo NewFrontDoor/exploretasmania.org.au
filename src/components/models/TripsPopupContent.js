@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Difficulty from './Difficulty'
+import rockClimbingImg from '../../assets/rockClimbingImg.png'
 
 class TripsPopupContent extends Component {
     constructor(props) {
@@ -21,6 +22,7 @@ class TripsPopupContent extends Component {
                             <li>
                                 <strong>Difficulty:</strong> <Difficulty difficulty={this.props.difficulty} />
                             </li>
+                            {this.props.rockClimbing === "yes" ? <li style={{paddingLeft: "68px"}}><img src={rockClimbingImg} height="31" width="31" alt=""/> Variable (rock climbing) - climbing routes range from easy to moderate</li> : ''}
                             <li>
                                 <strong>Number of Days:</strong> {this.props.tripLength}
                             </li>

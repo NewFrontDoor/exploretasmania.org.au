@@ -31,9 +31,12 @@ class Events extends Component {
               img={trip.headerimg}
               difficulty={trip.difficulty}
               activity={trip.activity}
+              rockClimbing={trip.rockclimbing}
+              nonStandardTrip={trip.nonstandardtrip}
+              nonStandardTripInfo={trip.nonstandardtripinfo}
               length={trip.days === "1" ? <span>1 day</span> : <span>{trip.days} days</span>}
               popupContent={<TripsPopupContent img={trip.headerimg} tripName={trip.node_title} popupBlurb={trip.popupblurb} difficulty={trip.difficulty}
-                tripLength={trip.days} startDate={trip.startdate} endDate={trip.enddate} guides={trip.guides} detailedInfo={trip.detailedinfo} />}
+                tripLength={trip.days} startDate={trip.startdate} endDate={trip.enddate} guides={trip.guides} detailedInfo={trip.detailedinfo} rockClimbing={trip.rockclimbing}/>}
               focusEvent={trip.focus}
             />
           </div>

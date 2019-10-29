@@ -8,8 +8,10 @@ import { postToWebform } from '../../utils/postToAPI.js';
 
 import TasmanPeninsulaPaypal from './registrations/TasmanPeninsulaPaypal';
 
-const registrationCloseDate = new Date('2020-12-30');
-const registrationsOpen = registrationCloseDate.getTime() > Date.now();
+//const registrationCloseDate = new Date('2020-12-30');
+//const registrationsOpen = registrationCloseDate.getTime() > Date.now();
+const registrationsOpen = false;
+const waitingList = true;
 
 const dateFormatOptions = { year: 'numeric', month: 'numeric', day: 'numeric' };
 const tripCost = 30;
@@ -687,7 +689,8 @@ class RegistrationFormTasmanPeninsula extends Component {
                     <p>{this.props.eventDates}<br />
                         {this.props.eventLocation}</p>
 
-                    <h3 style={{ color: "#c2b49a" }}>Registrations for this event have now closed.</h3>
+                    {waitingList ? (<React.Fragment><h4 style={{ color: "#c2b49a" }}>Registrations for this event are currently closed.</h4><br/>
+                    <p>If you would like to join the waiting list for this event so you can join if any places become available please contact us at <a href="mailto:info@exploretasmania.org.au">info@exploretasmania.org.au</a></p><br/></React.Fragment>) : <h3 style={{ color: "#c2b49a" }}>Registrations for this event have now closed.</h3>}
                 </section>
             )
         }
