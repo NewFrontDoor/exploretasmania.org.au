@@ -7,14 +7,14 @@ import ContactUs from './pages/ContactUs';
 import Trips from './pages/Trips/Trips';
 import SupportUs from './pages/SupportUs';
 import SupportUsConfirmation from './pages/SupportUsConfirmation';
-import LakeRhonaRegistrationForm from './pages/LakeRhonaRegistrationForm';
 import Christianity from './pages/Christianity';
 
-import RegistrationFormGeneric from './pages/RegistrationFormGeneric'
+import RegistrationFormGenericDay from './pages/RegistrationFormGenericDay'
 import RegistrationFormTasmanPeninsula from './pages/RegistrationFormTasmanPeninsula'
 import Guides from './pages/Guides';
 import GuideBioPage from './pages/GuideBioPage';
 import PaypalReturn from './pages/registrations/PaypalReturn';
+import RegistrationFormGenericPaypal from './pages/RegistrationFormGenericPaypal';
 
 class OtherPageWrapper extends Component {
   render() {
@@ -25,9 +25,11 @@ class OtherPageWrapper extends Component {
           <Route exact path="/Events" component={Trips} />
           <Route exact path="/SupportUs" component={SupportUs} />
           <Route exact path="/ThankYou" component={SupportUsConfirmation} />
-          <Route exact path="/registerLakeRhona" component={LakeRhonaRegistrationForm} />
-          <Route exact path={"/registerWomensWeekendWalking"} component={() => <RegistrationFormGeneric eventLocation="Lake St Clair" eventDates="5-6 October 2019" webformUUID="19a00a98-fae2-4ecb-a077-96f697d077d3" />} />
+
           <Route exact path={"/registerTasmanPeninsula"} component={() => <RegistrationFormTasmanPeninsula eventLocation="Tasman Peninsula" eventDates="16 November 2019" webformUUID="e206bf15-61c0-4e31-8937-cf3659ba18ad" />} />
+          <Route exact path={"/registerConinghamCliffsObserve"} component={() => <RegistrationFormGenericDay eventLocation="Coningham Cliffs" eventDates="23 November 2019" webformUUID="45746763-c4ba-49bc-ba00-ce6c913c86cb" />} />
+          <Route exact path={"/registerConinghamCliffsClimb"} component={() => <RegistrationFormGenericPaypal eventLocation="Coningham Cliffs" eventDates="23 November 2019" webformUUID="3e7cb784-7928-4082-86ea-b94a58bb64a2" tripCost={20} />} />
+
           <Route exact path={"/PaypalReturn/"} component={PaypalReturn} />
           <Route exact path={"/PaypalReturn/:sid"} component={PaypalReturn} />
 
