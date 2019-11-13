@@ -10,8 +10,8 @@ import TasmanPeninsulaPaypal from './registrations/TasmanPeninsulaPaypal';
 
 //const registrationCloseDate = new Date('2020-12-30');
 //const registrationsOpen = registrationCloseDate.getTime() > Date.now();
-const registrationsOpen = false;
-const waitingList = true;
+const registrationsOpen = true;
+const waitingList = false;
 
 const dateFormatOptions = { year: 'numeric', month: 'numeric', day: 'numeric' };
 const tripCost = 30;
