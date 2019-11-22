@@ -83,7 +83,9 @@ class RegistrationFormTest extends Component {
             declarationDate: null,
             formErrorMessage: "",
             formValid: false,
-            formSubmitted: false
+            formSubmitted: false,
+            canUseMyPictures: false,
+            canTakePictures: false
         }
 
         this.resetRegistrationForm = this.resetRegistrationForm.bind(this);
@@ -158,7 +160,9 @@ class RegistrationFormTest extends Component {
             declarationDate: null,
             formErrorMessage: "",
             formValid: false,
-            formSubmitted: false
+            formSubmitted: false,
+            canUseMyPictures: false,
+            canTakePictures: false
         })
     }
 
@@ -284,20 +288,30 @@ class RegistrationFormTest extends Component {
         }
 
 
-        if (this.state.over18 === null) {
-            errorMessage += "Please confirm that you are over 18 years of age.\n";
-        }
+        if (this.props.over18 !== false) {
+            if (this.state.over18 === null) {
+                errorMessage += "Please confirm that you are over 18 years of age.\n";
+            }
 
-        if (this.state.over18 === "yes") {
+            if (this.state.over18 === "yes") {
+                if (this.state.fullNameDeclaration === "[Your Full Name]" || validator.isEmpty(this.state.fullNameDeclaration)) {
+                    errorMessage += "Please enter your full name in the declaration above.\n";
+                }
+                if (this.state.declarationDate === null) {
+                    errorMessage += "Please select the date of your declaration and consent to the above information given.\n";
+                }
+            }
+            if (this.state.over18 === "no") {
+                errorMessage += "This is an adult trip – you must be over 18 to attend.\n";
+            }
+        }
+        else {
             if (this.state.fullNameDeclaration === "[Your Full Name]" || validator.isEmpty(this.state.fullNameDeclaration)) {
                 errorMessage += "Please enter your full name in the declaration above.\n";
             }
             if (this.state.declarationDate === null) {
                 errorMessage += "Please select the date of your declaration and consent to the above information given.\n";
             }
-        }
-        if (this.state.over18 === "no") {
-            errorMessage += "This is an adult trip – you must be over 18 to attend.\n";
         }
 
 
@@ -413,6 +427,8 @@ class RegistrationFormTest extends Component {
             form.append("submission[data][58][values][0]", this.state.over18);
             form.append("submission[data][59][values][0]", escape(this.state.fullNameDeclaration).replace(/([\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2694-\u2697]|\uD83E[\uDD10-\uDD5D])/g, ''));
             form.append("submission[data][60][values][0]", this.state.declarationDate.toLocaleDateString("en-AU", dateFormatOptions));
+            form.append("submission[data][61][values][0]", this.state.canTakePictures);
+            form.append("submission[data][62][values][0]", this.state.canUseMyPictures);
 
 
             var that = this;
@@ -672,38 +688,52 @@ class RegistrationFormTest extends Component {
                             &nbsp; I acknowledge that if I lose or damage equipment that is on loan then I am expected to pay
             for repairs or replacement of the equipment. {requiredField}</label><br /><br />
 
-            <label><input type="checkbox" name="canTakePictures" value={this.state.canTakePictures} onChange={this.handleChange.bind(this)} />
+                        <label><input type="checkbox" name="canTakePictures" value={this.state.canTakePictures} onChange={this.handleChange.bind(this)} />
                             &nbsp; I consent to Explore sharing photos and videos of me from this trip. I am aware that this may including publication on their website, social media accounts and printed advertising material.</label><br /><br />
 
-            <label><input type="checkbox" name="canUseMyPictures" value={this.state.canUseMyPictures} onChange={this.handleChange.bind(this)} />
+                        <label><input type="checkbox" name="canUseMyPictures" value={this.state.canUseMyPictures} onChange={this.handleChange.bind(this)} />
                             &nbsp; I consent to Explore sharing photos and videos that I have taken on this trip. I am aware that this may including publication on their website, social media accounts and printed advertising material.</label><br /><br />
 
 
-                        <label>I am over 18 years of age.</label> {requiredField}<br />
-                        <label> Yes &nbsp;</label><input type="radio" name="over18" value="yes" onChange={this.handleChange.bind(this)} checked={this.state.over18 === "yes"} />
-                        <label>&nbsp;&nbsp;No &nbsp;</label><input type="radio" name="over18" value="no" onChange={this.handleChange.bind(this)} checked={this.state.over18 === "no"} /><br />
+                        {this.props.over18 === false ? <React.Fragment>
+                            <section>
+                                <br />
+                                I, &nbsp;<input className="form-text required" type="text" name="fullNameDeclaration" size="50" maxLength="40" onChange={this.handleChange.bind(this)} value={this.state.fullNameDeclaration} /> &nbsp; declare that the information I have provided in this registration form about myself is true and correct.<br />
+                                <br />Date: <DatePicker
+                                    onChange={this.updateDeclarationDate}
+                                    value={this.state.declarationDate}
+                                    minDetail="month"
+                                    minDate={new Date()}
+                                    maxDate={new Date()} />
+                            </section>
+                        </React.Fragment>
+                            : <React.Fragment><label>I am over 18 years of age.</label> {requiredField}<br />
+                                <label> Yes &nbsp;</label><input type="radio" name="over18" value="yes" onChange={this.handleChange.bind(this)} checked={this.state.over18 === "yes"} />
+                                <label>&nbsp;&nbsp;No &nbsp;</label><input type="radio" name="over18" value="no" onChange={this.handleChange.bind(this)} checked={this.state.over18 === "no"} /><br /></React.Fragment>}
+                        <React.Fragment>
 
 
-                        {this.state.over18 === 'yes' ? (<section>
-                            <br />
-                            I, &nbsp;<input className="form-text required" type="text" name="fullNameDeclaration" size="50" maxLength="40" onChange={this.handleChange.bind(this)} value={this.state.fullNameDeclaration} /> &nbsp; declare that the information I have provided in this registration form about myself is true and correct.<br />
-                            <br />Date: <DatePicker
-                                onChange={this.updateDeclarationDate}
-                                value={this.state.declarationDate}
-                                minDetail="month"
-                                minDate={new Date()}
-                                maxDate={new Date()} />
-                        </section>) : (<section></section>)}
 
-                        {this.state.over18 === 'no' ? (<section>
-                            This is an adult trip – you must be over 18 to attend.
+                            {this.state.over18 === 'yes' ? (<section>
+                                <br />
+                                I, &nbsp;<input className="form-text required" type="text" name="fullNameDeclaration" size="50" maxLength="40" onChange={this.handleChange.bind(this)} value={this.state.fullNameDeclaration} /> &nbsp; declare that the information I have provided in this registration form about myself is true and correct.<br />
+                                <br />Date: <DatePicker
+                                    onChange={this.updateDeclarationDate}
+                                    value={this.state.declarationDate}
+                                    minDetail="month"
+                                    minDate={new Date()}
+                                    maxDate={new Date()} />
+                            </section>) : (<section></section>)}
+
+                            {this.state.over18 === 'no' ? (<section>
+                                This is an adult trip – you must be over 18 to attend.
               </section>) : (<section></section>)}
-
+                        </React.Fragment>
 
                         <br />
                         <input type="submit" value="Register" className="btn btn-primary" />
 
-                        <br /><br />
+                        <br /> <br />
                         <div id="errorMessage" style={{ whiteSpace: "pre-line", fontWeight: "bold" }}>
                             {this.state.formErrorMessage}
                         </div>
